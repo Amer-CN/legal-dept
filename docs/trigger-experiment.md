@@ -247,3 +247,41 @@ GET https://www.bing.com/search?q=...site:gov.cn
 4. 实验过程中发现并修复 2 处真实缺陷：总纲触发词覆盖不足（修复前最低仅覆盖 2/22）、复核标注词表与模板不一致。二者均已复测通过。
 
 **下一步建议**：将本套装部署到宿主 skill 目录（或按 README 第三节的挂载方式接入）后重启宿主，由用户用自然语言说出"帮我看看这份合同"等 3 至 5 句典型话术，复测自动触发命中率，补记本文件。
+
+---
+
+## 六、二期复测（2026-09-14 追记）：全局目录装载 + 九 skill 加载验证
+
+- 安装位置：`C:\Users\Admin\.agents\skills\`（ZCode 主力 skill 目录，原 36 个，已备份至 `.work/skills-backup-20260914`）
+- 安装方式：`legal-dept/`（总纲 + shared + industries 副本）+ 8 岗平铺为直接子目录（`contract-counsel` 等）——宿主 Skill 工具要求 skill 为直接子目录，`roles/` 嵌套层实测不可加载（`Skill not found: contract-counsel`），已改为平铺
+- 跨目录相对引用修复：岗位 SKILL.md 内 `shared/...` 引用以仓库根为基准，平铺后断链；已给 8 个岗目录各补 `shared/` + `industries/` 副本（只动安装区，不动仓库），9/9 引用可达已验证
+
+### 6.1 Skill 工具加载实测
+
+| skill | 加载 | 说明 |
+|---|---|---|
+| `contract-counsel` | 通过 | 全文加载，第 0–7 段完整 |
+| `legal-dept` | 通过 | 全文加载，路由表已含 6 业务岗 |
+| `employment-counsel` | 通过 | 全文加载 |
+| `ip-counsel` | 通过 | 全文加载 |
+
+结论：**宿主 Skill 工具可加载本套装 skill**（F1 部分消除：加载机制走通；自动触发仍待用户自然话术复测）。
+
+### 6.2 关键机制程序化核验（四文件）
+
+| 文件 | 待核实 | 未经分诊 | 未经复核 | 法条未经核验 | 免责 |
+|---|---|---|---|---|---|
+| contract-counsel | 4 | 2 | —（岗位级，复核门在总纲/总监岗） | 1 | 2 |
+| employment-counsel | 4 | 2 | — | 1 | 2 |
+| ip-counsel | 4 | 2 | — | 1 | 2 |
+| legal-dept | 4 | 1 | 4 | 1 | 2 |
+
+### 6.3 安装区引用可达性（四 skill × 五文件）
+
+`contract-counsel` / `employment-counsel` / `ip-counsel` / `legal-dept` 各自目录下 `shared/risk-framework.md`、`shared/templates/review-opinion.md`、`shared/templates/referral-form.md`、`shared/checklists/evidence-preservation.md`、`industries/README.md` 20/20 全部可达。
+
+### 6.4 遗留事项
+
+- 自动触发（用户自然话术命中率）仍未实测：Skill 工具为显式调用，本次验证的是"可加载 + 内容完整"，自然语言自动路由需在宿主真实会话中由用户复测
+- F2（法条联网核验）、F3（gsxt 521）维持原结论不变
+- 待观察项更新：总纲 description 已从 428 字符扩至约 180 触发词，截断风险上升；若触发不稳，优先改用显式调用
