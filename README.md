@@ -12,7 +12,7 @@
 - 目标用户：需要法务支持的企业（法务外包视角），尤其是没有专职法务团队的成长型企业。
 - 硬约束：**纯文本 markdown，跨平台可移植**，不依赖任何单一客户端的私有能力；不做量化风险打分，只做四级风险定级 + 判定理由。
 - 定位说明：这是法务部的**辅助工作流**，不是执业律师的替代品；对外正式出具法律意见、出庭、刑事辩护等仍须执业律师完成。
-- 二期规划：知产、公司治理、合规、独立前台岗、独立总监岗（首期复核职能由总纲代行）。
+- 编制：8 岗齐全——合同、劳动用工、争议解决、知识产权、公司治理、合规六个业务岗 + 法务前台（受理分诊兜底）+ 法务总监（复核把关升级）。
 
 ## 二、目录结构
 
@@ -20,9 +20,14 @@
 Legal Dept/
 ├── legal-dept/SKILL.md            # 部门总纲（唯一入口）：接待→分诊→定级→路由→汇办→复核门→归档
 ├── roles/
-│   ├── contract-counsel/SKILL.md  # 合同法务岗（首期）
-│   ├── employment-counsel/SKILL.md# 劳动用工岗（首期）
-│   └── dispute-counsel/SKILL.md   # 争议解决岗（首期）
+│   ├── contract-counsel/SKILL.md  # 合同法务岗
+│   ├── employment-counsel/SKILL.md# 劳动用工岗
+│   ├── dispute-counsel/SKILL.md   # 争议解决岗
+│   ├── ip-counsel/SKILL.md        # 知识产权岗
+│   ├── governance-counsel/SKILL.md# 公司治理岗
+│   ├── compliance-counsel/SKILL.md# 合规岗
+│   ├── legal-front-desk/SKILL.md  # 法务前台岗（受理分诊，无总纲环境时为兜底入口）
+│   └── legal-director/SKILL.md    # 法务总监岗（复核强制门，升级与转介决策）
 ├── shared/
 │   ├── risk-framework.md          # 四级风险等级（低/中/高/极高）+ 判定锚点
 │   ├── templates/
@@ -45,12 +50,12 @@ Legal Dept/
 
 本套装不依赖任何客户端私有机制，只需让宿主能读到这些 markdown 文件。按宿主能力选择：
 
-1. **支持目录式 skill 的宿主**：把 `legal-dept/`、`roles/`、`shared/`、`industries/` 四个目录整体放入宿主的 skill / 规则 / 知识目录。宿主按 `SKILL.md` 的 frontmatter `name` 识别（`legal-dept`、`contract-counsel`、`employment-counsel`、`dispute-counsel`）。
+1. **支持目录式 skill 的宿主**：把 `legal-dept/`、`roles/`、`shared/`、`industries/` 四个目录整体放入宿主的 skill / 规则 / 知识目录。宿主按 `SKILL.md` 的 frontmatter `name` 识别（`legal-dept`、`contract-counsel`、`employment-counsel`、`dispute-counsel`、`ip-counsel`、`governance-counsel`、`compliance-counsel`、`legal-front-desk`、`legal-director`）。
 2. **只支持单文件规则的宿主**：把 `legal-dept/SKILL.md` 整体粘贴为规则或系统提示；岗位 skill 按需追加粘贴。`shared/` 下的模板与清单按需以文件路径引用或一并粘贴。
 3. **支持项目级知识库的宿主**：把本仓库根目录挂为知识库/工作目录，让宿主按路径检索。此时所有 `shared/...` 相对路径引用可直接生效。
 4. **显式调用（不依赖自动触发）**：任何宿主下，用户说出下列任一表述即视为显式调用：
    - 总纲：`legal-dept`、`用法务部`、`走法务流程`、`按法务部流程处理`
-   - 岗位：`contract-counsel`、`employment-counsel`、`dispute-counsel`，或中文「合同法务岗 / 劳动用工岗 / 争议解决岗」
+   - 岗位：`contract-counsel`、`employment-counsel`、`dispute-counsel`、`ip-counsel`、`governance-counsel`、`compliance-counsel`、`legal-front-desk`、`legal-director`，或中文「合同法务岗 / 劳动用工岗 / 争议解决岗 / 知识产权岗 / 公司治理岗 / 合规岗 / 法务前台 / 法务总监」
    - 独立调用岗位时，岗位产出头部必须自标「未经分诊」（显式降级，不静默）。
 
 ### 3.1 命名冲突处理规则
