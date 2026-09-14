@@ -253,8 +253,8 @@ GET https://www.bing.com/search?q=...site:gov.cn
 ## 六、二期复测（2026-09-14 追记）：全局目录装载 + 九 skill 加载验证
 
 - 安装位置：`C:\Users\Admin\.agents\skills\`（ZCode 主力 skill 目录，原 36 个，已备份至 `.work/skills-backup-20260914`）
-- 安装方式：`legal-dept/`（总纲 + shared + industries 副本）+ 8 岗平铺为直接子目录（`contract-counsel` 等）——宿主 Skill 工具要求 skill 为直接子目录，`roles/` 嵌套层实测不可加载（`Skill not found: contract-counsel`），已改为平铺
-- 跨目录相对引用修复：岗位 SKILL.md 内 `shared/...` 引用以仓库根为基准，平铺后断链；已给 8 个岗目录各补 `shared/` + `industries/` 副本（只动安装区，不动仓库），9/9 引用可达已验证
+- 安装方式：`legal-dept/`（总纲 + shared + industries 副本）+ 8 岗平铺为直接子目录（`contract-counsel` 等）——宿主 Skill 工具要求 skill 为直接子目录，`roles/` 嵌套层实测不可加载（`Skill not found: contract-counsel`），已改为平铺。平铺为宿主适配形态，主仓库仍为唯一事实来源。
+- 资源基准与同步：岗位 SKILL.md 内 `shared/...` 引用以仓库根为基准，平铺后以各岗目录内副本为基准；已给 8 个岗目录各补 `shared/` + `industries/` 副本（只动安装区，不动仓库），9/9 引用可达已验证。主仓库更新后须重新同步副本；本节“可达”仅指文件存在与路径可解析，不等同于专项内容完整或自动触发有效。
 
 ### 6.1 Skill 工具加载实测
 
@@ -282,6 +282,7 @@ GET https://www.bing.com/search?q=...site:gov.cn
 
 ### 6.4 遗留事项
 
+- 精确词表覆盖属于静态检查，不作为自动触发命中率的结论；自动触发仍需真实会话复测。
 - 自动触发（用户自然话术命中率）仍未实测：Skill 工具为显式调用，本次验证的是"可加载 + 内容完整"，自然语言自动路由需在宿主真实会话中由用户复测
 - F2（法条联网核验）、F3（gsxt 521）维持原结论不变
 - 待观察项更新：总纲 description 已从 428 字符扩至约 180 触发词，截断风险上升；若触发不稳，优先改用显式调用

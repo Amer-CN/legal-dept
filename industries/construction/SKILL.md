@@ -31,7 +31,8 @@ description: 建筑工程行业包。施工企业的招投标合规、施工合�
 ## 3. 岗位加载指引
 
 - 合同审查（施工总承包合同、分包合同、EPC 合同）→ `contract-counsel` + 本包 `checklists/construction-contract.md`。
-- 招投标文件、资质证照、安全生产条件 → `compliance-counsel` + 本包 `checklists/bidding-compliance.md`。
+- 招投标文件、资质证照 → `compliance-counsel` + 本包 `checklists/bidding-compliance.md`。
+- 安全生产条件（许可证、持证在岗、安全交底、隐患排查）→ `compliance-counsel` + 本包 `checklists/completion-settlement-safety.md`“安全生产”节，并同步核对 `checklists/bidding-compliance.md` 中的资质与许可证项。
 - 农民工工资、劳务用工 → `employment-counsel` + 本包 `checklists/migrant-wage.md`。
 - 工程款催收、结算争议、索赔谈判、已进入诉讼仲裁 → `dispute-counsel` + 本包 `checklists/completion-settlement-safety.md`。
 - 多岗交叉（如分包合同无效又拖欠农民工工资）由总纲汇办，取更保守结论。

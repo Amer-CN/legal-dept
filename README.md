@@ -39,7 +39,8 @@ Legal Dept/
 │       ├── contract-redlines.md   # 合同红线清单
 │       ├── employment-redlines.md # 劳动红线清单
 │       └── evidence-preservation.md # 证据固定清单
-├── industries/README.md           # 行业包插槽规范（首期不挂载行业包）
+├── industries/README.md           # 行业包插槽规范
+│   └── construction/              # 建筑工程行业包 construction v1.0
 ├── docs/
 │   ├── trigger-experiment.md      # 触发实验记录
 │   └── superpowers/specs/2026-09-14-legal-dept-design.md  # 设计文档
@@ -58,11 +59,17 @@ Legal Dept/
    - 岗位：`contract-counsel`、`employment-counsel`、`dispute-counsel`、`ip-counsel`、`governance-counsel`、`compliance-counsel`、`legal-front-desk`、`legal-director`，或中文「合同法务岗 / 劳动用工岗 / 争议解决岗 / 知识产权岗 / 公司治理岗 / 合规岗 / 法务前台 / 法务总监」
    - 独立调用岗位时，岗位产出头部必须自标「未经分诊」（显式降级，不静默）。
 
+### 3.2 平铺部署与资源同步规则
+
+- 平铺部署：宿主要求 skill 为直接子目录时，把 `legal-dept/` 与 8 个岗位目录平铺到宿主 skill 目录；每个岗位目录内附带 `shared/` 与 `industries/` 副本。平铺只改变装载形态，不改变职责与流程。
+- 资源基准：仓库形态下，所有 `shared/...`、`industries/...` 引用以套装根目录为基准；平铺部署形态下，以各 skill 目录内附带的副本为基准。两处内容必须一致。
+- 同步规则：主仓库为唯一事实来源；平铺副本、粘贴规则等均为派生物。主仓库更新后必须重新同步部署副本；发现不一致时以主仓库为准。
+
 ### 3.1 命名冲突处理规则
 
 - 本套装 name 统一加 `legal-` 前缀（总纲）或 `-counsel` 后缀（岗位），降低与用户既有 skill 重名的概率。
 - 与用户既有 skill 重名时，以本套装目录路径为准，并在调用时显式写明路径（如 `roles/contract-counsel/SKILL.md`）。
-- 如宿主按 name 唯一索引且无法区分，建议先卸载同名 skill，或将本套装目录整体改名后挂载（改名不影响内部引用，内部引用均为相对路径）。
+- 如宿主按 frontmatter `name` 唯一索引且无法区分，仅改目录名无效：须同步修改对应 SKILL.md 的 `name`，并同步更新套装内对该 name 的文字引用；或先卸载同名 skill。不建议在未同步引用的情况下改名。
 
 ## 四、风险标尺（全套装唯一）
 
