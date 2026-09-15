@@ -35,14 +35,17 @@ Legal Dept/
 │   │   ├── review-opinion.md      # 审查意见书模板
 │   │   ├── referral-form.md       # 案件转介单模板（含敏感信息最小化提示）
 │   │   └── intake-log.md          # 受理记录 / 案件台账模板
+│   │   └── org-profile.md         # 组织基线与决策权限档案模板
 │   └── checklists/
 │       ├── contract-redlines.md   # 合同红线清单
 │       ├── employment-redlines.md # 劳动红线清单
-│       └── evidence-preservation.md # 证据固定清单
+│       ├── evidence-preservation.md # 证据固定清单
+│       └── bidding-compliance.md  # 招投标程序合规通用清单（跨行业；建工特有细节见 industries/construction/checklists/）
 ├── industries/README.md           # 行业包插槽规范
 │   └── construction/              # 建筑工程行业包 construction v1.0
 ├── docs/
 │   ├── trigger-experiment.md      # 触发实验记录
+│   └── skill-quality-gate.md      # 技能自检门（维护用检查表，非运行时）
 │   └── superpowers/specs/2026-09-14-legal-dept-design.md  # 设计文档
 └── README.md
 ```

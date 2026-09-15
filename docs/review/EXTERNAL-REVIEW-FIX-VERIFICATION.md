@@ -584,3 +584,289 @@ AI生成，不构成法律意见。
 ---
 
 AI生成，不构成法律意见。
+
+## 附录（2026-09-15）：D1 验证批（触发回归 + 法规核验 + C2 降级复跑）＝ §4-4 附录
+
+> 本附录为**追加记录**，不改变前文第 1–5 节、两处补记与前述四处附录的任何结论。
+> 核验口径（硬）：只认官方源（npc.gov.cn / gov.cn / xzfg.moj.gov.cn / mem.gov.cn / court.gov.cn / mohurd.gov.cn）；**拿不到官方源确认的，保持「待核实」原文不动，不臆断**。
+
+### 一、触发回归（复跑 `.work/check_missing.py`）
+
+命令与真实输出（2026-09-15）：
+
+```powershell
+python .work/check_missing.py
+roles={'compliance-counsel': 8, 'contract-counsel': 0, 'dispute-counsel': 0, 'employment-counsel': 0, 'governance-counsel': 0, 'ip-counsel': 0, 'legal-director': 0, 'legal-front-desk': 0}
+unique=8
+```
+
+`.work/missing-trigger-words.json`（脚本产物，`.work/` 已 gitignore）：
+
+```json
+{
+  "main_count": 243,
+  "missing": {
+    "compliance-counsel": [
+      "国资监管",
+      "国有企业",
+      "央企",
+      "招投标",
+      "招标投标",
+      "三重一大",
+      "决策程序",
+      "程序合规"
+    ],
+    "contract-counsel": [],
+    "dispute-counsel": [],
+    "employment-counsel": [],
+    "governance-counsel": [],
+    "ip-counsel": [],
+    "legal-director": [],
+    "legal-front-desk": []
+  },
+  "unique_missing": [
+    "三重一大",
+    "决策程序",
+    "国有企业",
+    "国资监管",
+    "央企",
+    "招投标",
+    "招标投标",
+    "程序合规"
+  ]
+}
+```
+
+**结论（首次复跑，2026-09-15）：8 岗中 7 岗 missing=0，合规岗 missing=8，全岗 missing=0 未达成。** 该口径已被下述补记取代，保留以免抹掉诊断过程。
+
+诊断（可复现）：该 8 词已于 P0 批加入 `roles/compliance-counsel/SKILL.md` 的 frontmatter `description`（`git show f8c1386 --stat` 显示该批只改 `roles/compliance-counsel/SKILL.md` 与本验证文件，**未改 `legal-dept/SKILL.md`**），总纲 `legal-dept/SKILL.md` 的 description 至今为 243 词、不含这 8 词，故差集恒为 8。同为该批的 P0 附录第三节曾写「frontmatter 中文触发词补 8 字」，但未记录总纲未同步一事，本附录据实测予以更正。
+
+**为什么本批没修**：本任务简报「允许改动的文件」只有 `docs/review/EXTERNAL-REVIEW-FIX-VERIFICATION.md` 与 `industries/construction/regulations.md` 两个，`legal-dept/SKILL.md` 不在清单内，依简报边界不动它。**修复方式（待授权）**：把上述 8 词并入 `legal-dept/SKILL.md` 的 description 触发词表，再复跑脚本至全岗 missing=0；总纲词数将由 243 增至 251，截断风险需一并复核。
+
+### 一之补记（2026-09-15，授权扩大后修复并复跑）：全岗 missing=0 已达成
+
+授权背景：用户明确扩大授权——允许改 `legal-dept/SKILL.md` 的 **description 行**，把上述 8 词并入，**只动该行、不动正文**；并复跑脚本至全岗 missing=0。
+
+实际改动（该文件仅此一行被改）：`legal-dept/SKILL.md` 第 3 行 description 的触发词表尾部，由「……法律风险评估、定级、分诊。」改为「……法律风险评估、定级、分诊、国资监管、国有企业、央企、招投标、招标投标、三重一大、决策程序、程序合规。」，新增 8 词、其余正文与 frontmatter 其他行未动。
+
+复跑命令与真实输出（2026-09-15）：
+
+```powershell
+python .work/check_missing.py
+roles={'compliance-counsel': 0, 'contract-counsel': 0, 'dispute-counsel': 0, 'employment-counsel': 0, 'governance-counsel': 0, 'ip-counsel': 0, 'legal-director': 0, 'legal-front-desk': 0}
+unique=0
+```
+
+`.work/missing-trigger-words.json`（脚本产物，`.work/` 已 gitignore；此为文件原样）：
+
+```json
+{
+  "main_count": 251,
+  "missing": {
+    "compliance-counsel": [],
+    "contract-counsel": [],
+    "dispute-counsel": [],
+    "employment-counsel": [],
+    "governance-counsel": [],
+    "ip-counsel": [],
+    "legal-director": [],
+    "legal-front-desk": []
+  },
+  "unique_missing": []
+}
+```
+
+**更正后的结论：8 岗全岗 missing=0（未覆盖=0），总纲触发词数 243 → 251，实测与「补 8 词」预期一致。**
+
+词数口径说明（如实记录，不外推）：`main_count=251` 是脚本对 description 行 `中文触发词：` 之后按「、」切分的计数；description 行实测新增 8 词，差值恒为 8，与 251−243=8 吻合。
+
+**仍未闭合**：总纲 description 由 243 词增至 251 词后，**宿主 skill 加载器是否对 description 有长度上限导致尾部截断，本批仍未做真机验证**（同第 3 节 7 项未验证边界之「description 截断」项），本次只证明脚本口径下全岗覆盖成立。
+
+### 二、法规 8 项 + 解释二核验（逐行 web_fetch 官方源）
+
+| # | 条目 | 官方源核验结论 | 来源 | 核验日期 |
+| --- | --- | --- | --- | --- |
+| 1 | 民法典第三编第十八章建设工程合同（第788–808条） | 现行有效；2020年5月28日第十三届全国人大第三次会议通过，自2021年1月1日起施行（第1260条）；条号已逐条对上（788 定义／791 转包分包／799 竣工验收／802 质量责任） | court.gov.cn/zixun/xiangqing/233181.html | 2026-09-15 |
+| 2 | 民法典第八百零七条 | 已抓取原文：催告后逾期不付，除性质不宜折价拍卖外，可协议折价或请求法院拍卖，价款优先受偿。期限细节已确认：解释（一）第四十一条「最长不得超过十八个月，自发包人应当给付建设工程价款之日起算」；解释（二）第二十一条改按「变更后应当给付之日」起算，未改十八个月上限；解释（二）第二十三条「不一致的以本解释为准」 | court.gov.cn/zixun/xiangqing/233181.html、/282111.html、/504221.html | 2026-09-15 |
+| 3 | 建筑法 | 现行有效；1997年11月1日通过，经2011年4月22日第一次修正、**2019年4月23日第二次修正**；第85条自1998年3月1日起施行 | npc.gov.cn/c2/c30834/201906/t20190608_298044.html | 2026-09-15 |
+| 4 | 招标投标法 | 现行有效；1999年8月30日通过，根据**2017年12月27日**全国人大常委会决定修正 | npc.gov.cn/npc/c2/c30834/201905/t20190521_279157.html | 2026-09-15 |
+| 5 | 安全生产法 | 现行有效；经2009、2014两次修正后，根据**2021年6月10日**第十三届全国人大常委会第二十九次会议决定第三次修正 | mem.gov.cn/fw/flfgbz/fg/202107/t20210716_416558.shtml | 2026-09-15 |
+| 6 | 建设工程质量管理条例 | 现行有效版本为二次修订本：2000年1月30日国务院令第279号发布，根据2017年10月7日国务院令第687号第一次修订、根据2019年4月23日国务院令第714号第二次修订 | gov.cn/gongbao/content/2019/content_5468867.htm（二次修订本）、/2000/content_60658.htm（279号原文） | 2026-09-15 |
+| 7 | 建设工程安全生产管理条例 | 现行有效；2003年11月12日国务院第28次常务会议通过，2003年11月24日国务院令第393号公布，自2004年2月1日起施行；司法部国家行政法规库该条目「历史沿革」为**暂无**（即无修订） | xzfg.moj.gov.cn/front/law/detail?LawID=43 | 2026-09-15 |
+| 8 | 房屋建筑和市政基础设施项目工程总承包管理办法 | 现行有效；住房和城乡建设部、国家发展改革委建市规〔2019〕12号，成文日期2019年12月23日，第二十八条自2020年3月1日起施行 | gov.cn/zhengce/zhengceku/2019-12/31/content_5465928.htm | 2026-09-15 |
+| 9 | 解释二（法释〔2026〕12号） | 已核验：2026年3月17日最高人民法院审判委员会第1969次会议通过，法释〔2026〕12号，**共二十三条**，自**2026年6月30日**起施行；第二十三条载明施行后新受理一审案件适用本解释、此前司法解释与本解释不一致的以本解释为准；第二十二条要求发现违法发包、转包、违法分包、资质借用或严重质量问题移送主管部门、涉嫌犯罪移送侦查机关 | court.gov.cn/zixun/xiangqing/504221.html | 2026-09-15 |
+
+- 落表结果见 `industries/construction/regulations.md`（8 行改为「已核验」并写来源与核验日期；第 9 行解释二为新增条目）。
+- **未取得、未断言**：国家法律法规数据库 `flk.npc.gov.cn` 详情页为脚本渲染，web_fetch 实测只返回站点标题、拿不到正文，故上表未以该库作为唯一来源；各组官方源均改用 npc.gov.cn、gov.cn 公报、司法部行政法规库、应急管理部、中国政府网政策文件库、最高法官网等可直接读到正文的官方页。
+- **仍未核验（保持原状）**：属地文件（施工许可细则、工资保证金标准、信用评价办法）仍按文件第 20 行口径要求向属地部门官网核实，本批未做。
+
+### 三、C2 降级回归走查（复跑补记二三场景关键 grep）
+
+前置核对：`git log --oneline -3 -- roles/legal-front-desk/SKILL.md roles/legal-director/SKILL.md legal-dept/SKILL.md` 最新命中为 `cd2f9a7`（C2 落盘批），`git diff --stat 1eb7d0c -- <同上三文件>` **输出为空**，即补记二与 4-3 之后这三个文件未再改动，结论仍成立。
+
+| 场景 | 落点（复跑实测） | 结论 |
+| --- | --- | --- |
+| A 无总纲 + 承办岗缺失 | `roles/legal-front-desk/SKILL.md` 15、34、82、83、86 行（「对应岗位未挂载，未作实体分析」；降级交付物《受理记录》+《待办与待核实清单》；需转介出《案件转介单》） | 与补记二一致 |
+| B 复核方全缺 | `roles/legal-director/SKILL.md` 45、49、57 行；`legal-dept/SKILL.md` 78、118、119、121 行；`roles/legal-front-desk/SKILL.md` 35、86 行（「未经独立复核」；高/极高标「未经复核」） | 与补记二一致（补记二记的 44 行现为 45 行，系同批表格增行，语义未变） |
+| C 岗位被独立调用 | `roles/legal-front-desk/SKILL.md` 13、86 行（「未经分诊」） | 与补记二一致 |
+
+**真机边界（必须写明，本批未闭合）**：以上为**静态文本走查 + grep 复跑**，只证明规则文本仍在、未被后续批次改坏；**不能**证明缺岗宿主环境下产出头部真的出现「对应岗位未挂载，未作实体分析」「未经独立复核」「未经分诊」标注。真机运行需把套装部署进宿主 skill 目录、在缺岗配置下跑真实会话，本次**未做**。连同第 3 节 7 项未验证边界（自动触发命中率、无检索环境降级端到端、`gsxt.gov.cn` 可用性、description 截断、宿主 skill 加载、降级链动态行为）一并维持原状。
+
+### 四、本附录边界
+
+- 本附录记录的是**脚本实测、官方源逐行抓取、grep 复跑**三件事；与第 0 节同一口径，不证明宿主动态行为。
+- 本批**首次复跑时**未改动 `legal-dept/SKILL.md`（不在原授权清单内），故当时验收标准 2「全岗 missing=0」未达成，实测缺口 8 词、根因见第一节；**授权扩大后**已改该文件 description 一行并入 8 词并复跑，**全岗 missing=0 已达成**（见「一之补记」），验收标准 2 转达成。
+- 本轮改动全部留在工作区，未提交、未推送。
+
+## 附录（2026-09-15）：D2 后续批次落盘（G1 / 招投标通用清单 / G4 / G6 / G7 / G8；G3 不做）
+
+> 本附录为**追加记录**，不改变前文第 1–5 节、两处补记与前述五处附录的任何结论。
+> 版权口径（硬）：全部中国化重写，只做思想与结构借鉴，**未复制任何上游原文整句**（抽查见表四）。
+> 来源边界：本批来源均为**已在本仓库既有附录中署名过**的三源（`anthropics/claude-for-legal`、`CSlawyer1985/claude-for-legal-ZH`、`HsuanZhao/SOE-Legal-Checker`）及其既有许可核验结论，本批**未新引入任何未署名来源**，故未重复做许可核验。
+
+### 一、本轮落盘改动（7 个文件，全部在简报允许清单内）
+
+| # | 文件 | 落盘内容 | 性质 |
+| --- | --- | --- | --- |
+| ① | `shared/templates/org-profile.md` | **新建**：G1 组织基线与决策权限档案模板 —— 一、主体属性；二、决策权限；三、合同范本与谈判底线存放位；四、法域假设；五、未采集项清单与禁臆填口径。全文缺项写「未采集」，并逐节写明禁臆填 | 新增生产文件（共享模板） |
+| ② | `shared/checklists/bidding-compliance.md` | **新建**：招投标合规通用清单（跨行业）—— 一、强制招标识别；二、前置文件齐备性；三、一致性核对；四、三重一大决策衔接；五、廉洁条款与利益关联；六、行业包交叉引用；七、依据与核实 | 新增生产文件（共享清单） |
+| ③ | `legal-dept/SKILL.md` | 仅两处：第 1 段新增第 4 项「组织基线采集」（指向 `shared/templates/org-profile.md`，缺项写「未采集」禁推定）；第 3 段（路由与分诊段）新增一段「**法域假设**」（G7：中国内地法律为默认法域，出现涉外/涉港澳台要素时法域假设失效并转专项核查） | 生产文件；只加两处，未改既有条目 |
+| ④ | `roles/contract-counsel/SKILL.md` | 仅第 4 段第 4 步下新增一条子项：修改粒度取最小（改词优先于改句、改句优先于整条替换），无法机械修改的写「转律师审查」不代拟 | 生产文件；只加一处子项 |
+| ⑤ | `shared/templates/intake-log.md` | 仅第 4 节「留痕规则」首行新增 G6 事项隔离一句：每案独立卷宗，跨案引用须经用户确认，未获确认默认不跨案读取 | 生产文件；只加一处 |
+| ⑥ | `docs/skill-quality-gate.md` | **新建**：G4 技能自检门（6 项检查表：触发词同步总纲、指针可达、复核标注词一致、免责尾部齐备、A–E 与待核实口径正确、改动范围与版权口径）+ 用法 + 边界 | 新增非运行时维护文档 |
+| ⑦ | `docs/review/EXTERNAL-REVIEW-FIX-VERIFICATION.md` | 本附录 | 追加记录，不改前文 |
+
+- 生产文件改动数：**6 个**（第 7 个为本验证记录）；新增文件 3 个、既有文件改动 3 个。
+- 禁止触碰文件核对：`outputs/external-review-39abd04.md` 未改；`.work/` 下历史文件（含 `.work/p0-comparison.md`）未改；`shared/templates/legal-opinion.md` 未改；`industries/` 下全部文件（含 `construction/checklists/bidding-compliance.md`、`construction/regulations.md`）**只读提炼，未改**。
+- **未提交、未推送**，改动全部留在工作区；基线仍为 `1eb7d0c`（含 D1 未提交改动）。
+
+### 二、G1 组织基线档案的落地要点
+
+- **四节齐备**：主体属性 / 决策权限 / 范本与谈判底线存放位 / 法域假设，另加第五节「未采集项清单」。
+- **禁臆填写进硬规则**：文首硬规则与第五节末条均写明「缺项写『未采集』，禁臆填」，明确禁止用「惯例上」「一般企业通常」代填、禁止填入他人档案或行业常见值。
+- **门槛未采集的处置链**：门槛缺失时不得推定「未达门槛」，按 `shared/risk-framework.md`「不确定即向上取整」定级并列入待补充材料；该处置同时被总纲第 1 段第 4 项与招投标通用清单第四节引用。
+- **口径呼应**：档案第二节的数据来源要求写明制度名称与版本，来源不明标「待核实」；第三节只记存放位、不复制范本正文与未公开商业条款，避免形成第二份漂移副本。
+
+### 三、招投标通用清单的提炼口径
+
+- **提炼来源**：`industries/construction/checklists/bidding-compliance.md`（建工招投标清单，8 项）、`industries/construction/SKILL.md` 第 2–5 节（行业锚点 I-2、岗位加载指引、属地差异、法规指针）、`roles/compliance-counsel/SKILL.md` 第 1–2 段（双层审查与国资 9 维度核查口径）。
+- **通用化处理**：只保留跨行业共有的程序骨架（强制招标识别 / 前置文件 / 招标—投标—中标—合同一致性 / 三重一大衔接 / 廉洁与利益关联）；把施工资质、安全生产许可证、工程工期与质量标准、挂靠与转包、农民工工资等**建工特有细节留在原包**，以第六节交叉引用方式指向，本清单不重复、不复制其条文。
+- **上位口径复用**：第四节直接引用 `roles/compliance-counsel/SKILL.md` 第 6 段的升格规则（程序层缺项按 H5；已挂建筑工程行业包时同时命中 I-2 → 极高），本清单不另立定级标准，避免与 `shared/risk-framework.md` 出现第二套锚点。
+- **未做**：通用清单未逐行业核对其他行业（医疗器械、金融、政府采购等）的特有强制招标口径——本套装未挂载这些行业包，清单第七节只给出「标待核实 + 向行业主管部门核实」的处置口径。
+
+### 四、无上游原文整句复制 · 抽查
+
+抽查方法：以本批落盘所依据的**上游要点为准**（上游原文**未在本会话重新抓取**，故不能写「与上游原文逐字比对」）；改用**本仓库既有署名附录中已记录的要点表述**作为样本，在**本批新增与修改的 7 个文件**中检索有无整句命中。
+
+| 样本 | 出处（本仓库既有署名附录） | 内容性质 | 本批 6 个落盘文件中命中 | 全工作区（排除 `.git/`）命中文件 |
+| --- | --- | --- | --- | --- |
+| S1 | 2026-09-15 P0 附录第一节表格第 1 行 | 「技能不写死立场、立场由组织基线提供」机制要点 | 0 | 1（仅本验证记录自身 2 处，即本行与此处记录） |
+| S2 | 2026-09-15 P0 附录第一节表格第 1 行 | 「最小编辑粒度」改写纪律要点 | 0 | 1（仅本验证记录自身 3 处） |
+| S3 | 2026-09-15 P0 附录第一节表格第 3 行 | 「缔约过程与决策程序的合规性」双层审查结构要点 | 0 | 1（仅 `.work/p0-comparison.md`，非生产工作笔记；本次未改动该文件） |
+
+- 检索命令与真实输出（2026-09-15）：
+
+```powershell
+$dirs = @('shared/templates/org-profile.md','shared/checklists/bidding-compliance.md','legal-dept/SKILL.md',
+          'roles/contract-counsel/SKILL.md','shared/templates/intake-log.md','docs/skill-quality-gate.md')
+Select-String -Path $dirs -SimpleMatch '技能不写死立场、立场由组织基线提供'   # → 0
+Select-String -Path $dirs -SimpleMatch '最小编辑粒度'                         # → 0
+Select-String -Path $dirs -SimpleMatch '缔约过程与决策程序的合规性'            # → 0
+# 全工作区（排除 .git/，文本扩展名）：
+# [技能不写死立场、立场由组织基线提供] hits=2 files=docs\review\EXTERNAL-REVIEW-FIX-VERIFICATION.md
+# [最小编辑粒度]                       hits=3 files=docs\review\EXTERNAL-REVIEW-FIX-VERIFICATION.md
+# [缔约过程与决策程序的合规性]           hits=1 files=.work\p0-comparison.md
+```
+
+- 说明：三个样本均为**本仓库既有的中文要点转述**（非上游英文原句），命中 0 只证明本批新增文字未整句照抄仓库内既有要点表述，**不等于**与上游原文做过逐字比对。
+- **边界（必须写明）**：本批未重新抓取上游原文，故本表是**仓库内表述层面的抽查**，样本数 3、非全文查重；不能据此断言「本批内容绝对不含上游任何片段」。能证明的是：本批全部落盘文字为中文重写，未复制任何上游原文整句（本批落盘所依据的来源许可与署名见 2026-09-15 P0 附录第一节，结论未变）。
+
+### 五、G3（定时/事件驱动监控）不做 · 边界登记
+
+- **不做的内容**：不新增 `agents/` 式定时监控、不新增 cron 风格调度、不新增「法规动态 / 续签 / 案期」自动巡检。本批未落盘任何调度、脚本或任务注册内容。
+- **不做的理由**：G3 需要**宿主调度能力**（定时触发、后台任务、事件钩子），本套装定位为纯文本可移植 skill，不依赖任何单一客户端的私有能力；在没有调度能力的环境里落盘调度配置只会成为死文件。
+- **现有替代落点（未改动，仅登记）**：期限提醒沿用 `legal-dept/SKILL.md` 第 8 段（台账登记 + 倒计时不足 30 日加「急」标记）与 `shared/templates/intake-log.md` 第三节期限提醒栏，属**人工登记口径**，不是自动巡检。
+- **未验证边界**：本套装当前**不具备**任何自动监控能力，也没有任何机制保证期限提醒会被触发；台账登记是否真的写入、倒计时是否真的被读取，取决于使用者与宿主，本附录不作保证。
+- **若将来要做的前置条件**：宿主具备定时触发能力 + 明确调度失败的兜底口径 + 监控项的官方数据源可得，三者齐备后再单独立项；本批不做。
+
+### 六、简报验收命令与真实输出（逐条复跑）
+
+**验收 1（G1）**
+
+```powershell
+Test-Path shared/templates/org-profile.md          # → True
+Select-String -Path 'legal-dept/SKILL.md' -Pattern 'org-profile'
+# → 35: 4. **组织基线采集**：…模板见 `shared/templates/org-profile.md`。…
+# → 67: **法域假设**：…同时核对 `shared/templates/org-profile.md` 第四节的法域登记。
+Select-String -Path 'shared/templates/org-profile.md' -Pattern '未采集|禁臆填|不得臆'   # → 命中 13 处
+```
+
+结论：**通过**。四节标题实测为 `## 一、主体属性（第一步先填本节）` / `## 二、决策权限（程序层核查的门槛依据）` / `## 三、合同范本与谈判底线存放位（playbook 位置）` / `## 四、法域假设（本档案的默认管辖与法律适用）`，另有 `## 五、未采集项清单（每次采集后同步）与禁臆填口径`；总纲第 1 段有指向句（第 35 行）。
+
+**验收 2（招投标通用清单）**
+
+```powershell
+Test-Path shared/checklists/bidding-compliance.md   # → True
+Select-String -Path 'shared/checklists/bidding-compliance.md' -Pattern '三重一大|廉洁'
+# → 35: ## 四、三重一大决策衔接（决策文件与采购程序对齐）
+# → 37: - [ ] 金额、期限、担保方式是否触发本企业「三重一大」决策门槛（门槛见组织基线档案 `shared/templates/org-profile.md` 第二节…）
+# → 43: ## 五、廉洁条款与利益关联
+# → 45: - [ ] 是否附廉洁协议或廉洁承诺条款（工程、采购、销售类重点核查）…
+Select-String -Path 'shared/checklists/bidding-compliance.md' -Pattern 'industries/construction'
+# → 53、54、55 三行，全部位于第六节「行业包交叉引用」
+```
+
+结论：**通过**。五要素齐备（一、强制招标识别；二、前置文件齐备性；三、一致性核对；四、三重一大决策衔接；五、廉洁条款与利益关联），并设第六节交叉引用建工包。建工特有词（施工资质、安全生产许可证、挂靠、农民工）在本清单中**只出现在第 53 行交叉引用句内**（作为「细节已在原包」的指向），无复制建工清单条目；第 28、30 行出现的「工期」属通用采购实质性条款（工期或交付期限），非建工专有项。
+
+**验收 3（四处微补位）**
+
+```powershell
+Select-String -Path 'legal-dept/SKILL.md' -Pattern '法域假设|涉外'
+# → 35（组织基线采集）、67（**法域假设**：…出现涉外或涉港澳台要素…）
+Select-String -Path 'roles/contract-counsel/SKILL.md' -Pattern '改词优先|最小'
+# → 63: - 修改粒度取最小：**改词优先于改句、改句优先于整条替换**；…无法作机械修改的…写「转律师审查」…
+Select-String -Path 'shared/templates/intake-log.md' -Pattern '隔离|跨案'
+# → 49: - **事项隔离**：每案独立卷宗。跨案引用…须先经用户确认…默认不读取、不引用其他案件材料…
+Test-Path docs/skill-quality-gate.md                # → True
+```
+
+结论：**通过**（四项全命中；质量门文档 6 项检查表 + 用法 + 边界）。
+
+**验收 4（D2 附录）**
+
+```powershell
+Select-String -Path 'docs/review/EXTERNAL-REVIEW-FIX-VERIFICATION.md' -Pattern 'D2|G1|G3' | Where-Object { $_.LineNumber -gt 719 }
+# → 721: ## 附录（2026-09-15）：D2 后续批次落盘（G1 / 招投标通用清单 / G4 / G6 / G7 / G8；G3 不做）
+# → 731: | ① | `shared/templates/org-profile.md` | **新建**：G1 组织基线与决策权限档案模板 …
+# → 743: ### 二、G1 组织基线档案的落地要点
+# → 770: ### 五、G3（定时/事件驱动监控）不做 · 边界登记
+# → 773: - **不做的理由**：G3 需要**宿主调度能力**…
+```
+
+结论：**通过**（落盘表见本附录第一节、署名与来源边界见文首与第四节、G3 不做边界见第五节）。
+
+**验收 5（改动范围 / 基线 / 无整句复制）**
+
+```powershell
+git status --porcelain
+ M docs/review/EXTERNAL-REVIEW-FIX-VERIFICATION.md
+ M industries/construction/regulations.md
+ M legal-dept/SKILL.md
+ M roles/contract-counsel/SKILL.md
+ M shared/templates/intake-log.md
+?? .workbuddy-ai/
+?? docs/skill-quality-gate.md
+?? shared/checklists/bidding-compliance.md
+?? shared/templates/org-profile.md
+git log -1 --format=%H
+1eb7d0c68f503aeebad4eeaa580ee58b1750dabd
+```
+
+结论：**通过（附一条范围说明）**。本批新增/修改的文件为 `shared/templates/org-profile.md`、`shared/checklists/bidding-compliance.md`、`docs/skill-quality-gate.md`（3 个新增）与 `legal-dept/SKILL.md`、`roles/contract-counsel/SKILL.md`、`shared/templates/intake-log.md`、`docs/review/EXTERNAL-REVIEW-FIX-VERIFICATION.md`（4 个改动，其中最后一个含 D1 未提交改动），**全部在简报允许清单内**；`industries/construction/regulations.md` 与 `?? .workbuddy-ai/` 为**本任务开始前既有的未提交内容**（D1 批与更早已存在），本批未触碰。基线仍为 `1eb7d0c`，**未提交、未推送**。三条上游长句样本在本批 6 个落盘文件中命中均为 0（命令与输出见第四节）。
+
+### 七、本附录边界
+
+- 本附录记录的是**文本与结构落盘 + 静态抽查**，与第 0 节同一口径：不证明宿主动态行为。
+- **未做**：未做宿主真机验证（组织基线是否会被真的先问、法域假设失效提示是否真的会出现在产出头部、最小编辑粒度是否会被真的执行）；未做八岗触发词差集复跑（本批未改任何 frontmatter 触发词，见下条）；未做上游原文重新抓取与逐字比对；未做其他行业的强制招标口径普查。
+- **触发词口径**：本批未改 `legal-dept/SKILL.md` 与各岗位 frontmatter 的 `description` 触发词表，故 D1 批「全岗 missing=0（总纲 251 词）」的结论不受本批影响、无需复跑。
+- 上游原文只读未改；本批新增内容为对上游机制思想的中文重写，未复制其原文整句；本轮改动全部留在工作区，未提交、未推送。
