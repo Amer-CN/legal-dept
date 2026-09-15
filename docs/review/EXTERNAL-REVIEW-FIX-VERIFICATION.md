@@ -1668,4 +1668,162 @@ git status --porcelain
 
 ---
 
-AI生成，不构成法律意见。
+## 附录（2026-09-15）：D8 中文同行＋仲裁条款蒸馏（三源精读 + 对照表 + 3 生产文件）
+
+> 本附录为**追加记录**，不改变前文第 1–5 节、两处补记、前述各附录与 D2／D3／D4a／D4b／D5a／D5b／D6／D7 附录的任何结论。
+> 许可门口径（硬）：三源许可由主模型 MCP 亲验——`qulv-china-legal-counsel-skill` 与 `legal-assistant-pro` 为 **MIT**，`arbitration-clause-design-and-review-hafez-virjee` 为 **CC BY 4.0**；三者均可改写，**均要求署名（版权人＋许可）**。
+> 蒸馏口径（硬）：只移植**方法结构**，**不搬原文整句、不搬英美实体法**；上游现行的具体法条编号与期限数字一律**不移植**，涉及条号与天数之处改为「按仲裁地法院与受理机构现行规则核实」；qulv 的 `knowledge-base/` 法规库**只对照不复制**。
+> 许可门状态变更登记：`arbitration-clause-design-and-review-hafez-virjee` 在 D7 附录第一节表 #7 按「MIT/Apache 放行」的字面口径记 **禁蒸**；D8 简报载明用户已批准按 CC BY 4.0 蒸馏，本批据此改为**可蒸馏**并按 CC BY 署名。
+
+### 一、三源精读与许可（逐源实取，2026-09-15）
+
+| # | 来源 | 抓取方式与实测 | 许可 / 版权人 | 结论 |
+| --- | --- | --- | --- | --- |
+| ① | `Daknniel-0881/qulv-china-legal-counsel-skill` | MCP `get_file_contents` 实取根目录与 `agents`／`references`／`scripts`／`knowledge-base` 目录清单；`knowledge-base/03_chunks` 经 GitHub trees API 递归列目录（**只列结构，未下载法规正文**）；`SKILL.md`（6079 B）、10 个 `references/*.md`、`LICENSE`（1061 B）经 `raw.githubusercontent.com` 取正文 | **MIT**，Copyright 2026 Suze | 可蒸馏＋署名 |
+| ② | `lawyerwangbo/legal-assistant-pro` | MCP 实取根目录与 `checklists`／`templates`／`references`／`docs` 目录清单；`SKILL.md`（14135 B）、`checklists/*`、`references/*`、`docs/*`、`LICENSE`（1056 B）取正文 | **MIT**，Copyright 2025 | 可蒸馏＋署名 |
+| ③ | `lawve-ai/awesome-legal-skills` → `skills/arbitration-clause-design-and-review-hafez-virjee` | MCP 实取目录清单（`SKILL.md` 80598 B、`README.md`、`changelog.md`、`examples.md`、`qa-scenarios.md`、`sources.md`、`License` 19088 B）；`SKILL.md`、`README.md`、`License` 取正文，逐节精读 | **CC BY 4.0**，作者 Hafez Virjee | 可蒸馏＋署名（用户已批准） |
+
+- 工具偏差登记：本批 MCP `get_file_contents` 对三源目录清单可用（D7 当时不可用的 `search_code` 本批未使用）；小文件直接用 `raw.githubusercontent.com` 取正文；qulv 法规库仅用 trees API 列名。暂存目录为工作区外的 `F:\AIXM\_d8scratch`，事后已删。
+- **未做**：三源的许可普查（只核这三源）；qulv `scripts/*.py` 的可执行性验证；`knowledge-base/` 正文的任何下载或比对。
+
+### 二、来源署名与许可要求
+
+| 来源 | 采用的什么（中文重写转述，未搬原句） | 许可 / 版权人 |
+| --- | --- | --- |
+| `qulv-china-legal-counsel-skill`（`SKILL.md`＋`references/contract-review-playbook.md`＋`references/citation-verification.md`＋`references/risk-and-escalation.md`＋`references/source-registry.md`） | 请求分路由再进统一流程；法源优先次序七级；引证核验三态（通过／存疑／不通过）与不通过时的四步纠正；**拒答与升级四要素**（写明理由 → 标风险等级 → 列安全下一步 → 指名须由执业律师或人工法务复核的部分）；失败模式块（缺什么事实／查过什么源／为何不可靠／下一步／是否须律师） | **MIT**，Copyright 2026 Suze |
+| `legal-assistant-pro`（`SKILL.md`＋`docs/litigation-flow.md`＋`checklists/contract-review-checklist.md`） | 仲裁程序节点链（申请→受理→组庭→开庭或书面审理→裁决）；阶段＋当事人地位判定产出物类型；仲裁员选定的机制结构；撤销与不予执行两条救济路径及其共同事由、管辖法院与衔接处理；信息完备性七维检查 | **MIT**，Copyright 2025 |
+| `arbitration-clause-design-and-review-hafez-virjee`（`SKILL.md`） | 起草／审查两路径分流；文档优先与「只问会改变架构的问题」；商业姿态评估；仲裁条款要件清单；严重度四级与「可能无效」独立标记；改动量分岔；条款起稿的选取顺序；仲裁地「不设默认、写到城市一级」与「地与机构分离」；执行确定性不得夸大；输出体例（条款在前／评估在前）；内部论证与对方论证分置；偏见与可信度双向规则；成本口径纪律（不编造区间、不假精度）；「先给架构再标专项转介」的处置顺序 | **CC BY 4.0**，Hafez Virjee |
+
+**署名落实**：三源许可均要求署名 → `roles/contract-counsel/SKILL.md` 文末署名段（D8 行）、`roles/dispute-counsel/SKILL.md` 文末新增署名段、`shared/checklists/contract-redlines.md` F 节改动在**本节第二表**署名（该清单为共享清单，不加文件尾署名段，以免改动 F 节以外的文件结构；署名记录以本附录与 `.work/d8-comparison.md` 为准）。上游实名与许可核验记录在本附录第一节与 `.work/d8-comparison.md`。
+
+### 三、本轮落盘改动（3 个生产文件 + 1 个对照表；全部在简报允许清单内）
+
+| # | 文件 | 落盘内容 | 性质 |
+| --- | --- | --- | --- |
+| ① | `roles/contract-counsel/SKILL.md` | 仅新增**第 4.6 段「仲裁条款要件化审查」**（14 条：分路径／文档优先取数／商业姿态／法源优先次序七级／引证三态核验／要件逐项审查含仲裁地与机构分离与城市一级精度／条款起稿选取顺序／四级分档含「可能无效」独立标记／改动量分岔／产出顺序／置信与缺失信息框／内部与对方论证分置／成本口径纪律／落《审查意见书》）；文末署名段**补 1 行 D8 来源**（三源＋许可）与 1 行「未移植条号与天数」口径 | 生产文件；改动只落在新段与文末署名段 |
+| ② | `roles/dispute-counsel/SKILL.md` | 仅新增**第 4.6 段「仲裁程序与裁决后救济」**（11 条：程序类型先行／仲裁节点链入台账／仲裁员选定／撤销与不予执行两条路径与衔接／阶段＋地位判产出物（**不代拟**红线不变）／七维立案前检查／先给架构再标专项转介／拒答与升级四要素／失败模式块／置信框／偏见双向自查）；文末新增「方法来源署名」段（D8 三源＋许可） | 生产文件；纯新增，未改第 0–7 段既有措辞与文末免责声明 |
+| ③ | `shared/checklists/contract-redlines.md` | **仅 F 节内**：F1 由 1 条「标准立场」子项补为 5 条、F2 由 1 条补为 2 条、F3 由 1 条补为 3 条、F4 由 1 条补为 3 条（新增 9 条「标准立场（仲裁专项）」子项：或裁或审排除／仲裁地城市一级／地与机构分离与不设默认／执行确定性不夸大／仲裁协议适用法与要件缺失／境外安排要素／紧急救济配套／分层争议解决出口／仲裁阶段送达／多主体背靠背）；E 节与 G 节、F 节各条既有核对问句与既有「标准立场」句**一字未动** | 生产文件；改动只在 F1–F4 四条的缩进子项 |
+| ④ | `.work/d8-comparison.md` | **新建**：三源实测结构与许可表（含 blob sha）×（结构＋方法要点＋与我方对照＋可否采纳＋拟落点）＋落盘取舍表＋边界 | 非生产文件（对照表） |
+| ⑤ | `docs/review/EXTERNAL-REVIEW-FIX-VERIFICATION.md` | 本附录 | 追加记录，不改前文 |
+
+- 生产文件改动数：**3 个**（①②③），符合简报「≤3 个」。
+- **未落盘（超出候选，只记对照表后续）**：源①的四档风险与输出政策绑定（含「停止出最终结论、改出应急清单」）；源①的谈判语气三档与「不要只说删掉这条，要给对方问什么」；源②的合同审查「先检致命项」排序与八项审查框架；源①法源优先次序独立成文件、源①引证三态并入模板层、源②七维完备性并入台账模板、源③仲裁地评估独立成 `shared/checklists/arbitration-clause.md`、源②时效与诉讼费并入 `shared/`（见 `.work/d8-comparison.md` 第三节）。其中源①的**拒答与升级四要素**已落盘（`roles/dispute-counsel/SKILL.md` 第 4.6 段第 8 条），不属未落盘项。
+- **明确不采纳**：源①的法规库切块路线与 6 个 Python 脚本（与本仓库「不内联法条汇编」的指针化设计冲突）；源③ `sources.md`／`examples.md`／`qa-scenarios.md` 中的机构名单与费用数值（英美与国际机构实体内容＋具体数值，属版权红线）。
+- 禁止触碰文件核对：`outputs/external-review-39abd04.md` 未改；`.work/` 下历史文件（含本任务简报 `.work/task-d8-peers-arbitration.md`）**只读未改**；`shared/templates/legal-opinion.md` 未改；`industries/` 下全部文件未改（本批只读）；F 盘其他项目未改。
+- **未提交、未推送**，改动全部留在工作区。
+
+### 四、简报验收命令与真实输出（逐条实跑，2026-09-15）
+
+> 为守「不搬上游原文整句」口径，验收 3 的样本正文**不在本文件内引用**，只登记字符数、sha256 前 16 位与来源文件。
+
+**验收 1（对照表存在、三源结构＋方法＋缺口齐全、许可结论与简报一致）**
+
+```powershell
+(Select-String -Path '.work/d8-comparison.md' -Pattern 'qulv|assistant-pro|arbitration').Count
+(Select-String -Path '.work/d8-comparison.md' -Pattern 'MIT|CC BY').Count
+# → 实测输出见本节末「实测输出留档」
+```
+
+结论：**通过**。对照表含三源实测结构与许可表（第一节）、逐源方法要点＋与我方对照＋可否采纳＋拟落点（第二节，三张表）、落盘取舍表（第三节）、边界（第四节）；许可结论为 MIT×2＋CC BY 4.0，与简报第 5 行一致。
+
+**验收 2（落盘生产 ≤3 个、为方法移植、落盘文件命中「仲裁」）**
+
+```powershell
+git diff --name-only
+foreach($f in @('roles/contract-counsel/SKILL.md','roles/dispute-counsel/SKILL.md','shared/checklists/contract-redlines.md')){
+  (Select-String -Path $f -Pattern '仲裁').Count
+}
+Select-String -Pattern '第[一二三四五六七八九十百]+条' roles/contract-counsel/SKILL.md,roles/dispute-counsel/SKILL.md,shared/checklists/contract-redlines.md
+# → 实测输出见本节末「实测输出留档」
+```
+
+结论：**通过**。`git diff --name-only` 4 行中，`docs/review/EXTERNAL-REVIEW-FIX-VERIFICATION.md` 为**验证记录（追加 D8 附录）**，按简报口径不计入生产文件；生产文件为 ①②③ 共 **3 个**（≤3）。三文件均命中「仲裁」；D8 新增文字内**无任何「第×条」类条号引用**（全仓库命中按基线既有内容另记）。
+
+**验收 3（不搬原文整句：2 句上游中文长句 ＋ 1 句上游英文长句，工作区无命中）**
+
+```powershell
+# 样本取自本批实取的上游正文；样本为定长子串，可经 sha256 复现
+# 扫描口径：排除 .git/ 目录与二进制扩展名后的全部工作区文件
+# → 实测输出见本节末「实测输出留档」
+```
+
+结论：**通过**。3 个样本在工作区（含本次改动后的全部文件）**零命中**；样本正文不落盘，只登记字符数与 sha256 前 16 位。
+
+**验收 4（D8 附录在验证记录）**
+
+```powershell
+(Select-String -Path 'docs/review/EXTERNAL-REVIEW-FIX-VERIFICATION.md' -Pattern 'D8').Count
+# → 实测输出见本节末「实测输出留档」
+```
+
+结论：**通过**。本附录含三源精读与许可（第一节）、来源署名（第二节）、落盘改动表（第三节）、本节验收输出与第五节边界。
+
+**验收 5（基线未变、未提交推送）**
+
+```powershell
+git log -1 --format=%H
+git status --porcelain
+# → 实测输出见本节末「实测输出留档」
+```
+
+结论：**通过**。HEAD 仍为简报所述基线 `358ea04`，本批**未提交、未推送**；对照表 `.work/d8-comparison.md` 因 `.work/` 被忽略而不出现在 `git status`。
+
+### 实测输出留档（2026-09-15 实跑）
+
+```text
+# workspace_files=871（排除 .git/ 与二进制扩展名后的实扫文件数）
+
+# 验收 1
+(Select-String -Path '.work/d8-comparison.md' -Pattern 'qulv|assistant-pro|arbitration').Count  → 14
+(Select-String -Path '.work/d8-comparison.md' -Pattern 'MIT|CC BY').Count                     → 11
+
+# 验收 2
+git diff --name-only →
+  docs/review/EXTERNAL-REVIEW-FIX-VERIFICATION.md
+  roles/contract-counsel/SKILL.md
+  roles/dispute-counsel/SKILL.md
+  shared/checklists/contract-redlines.md
+git status --porcelain →
+   M docs/review/EXTERNAL-REVIEW-FIX-VERIFICATION.md
+   M roles/contract-counsel/SKILL.md
+   M roles/dispute-counsel/SKILL.md
+   M shared/checklists/contract-redlines.md
+  ?? .workbuddy-ai/
+(Select-String -Path <生产文件> -Pattern '仲裁').Count →
+  roles/contract-counsel/SKILL.md      = 10
+  roles/dispute-counsel/SKILL.md       = 22
+  shared/checklists/contract-redlines.md = 14
+Select-String -Pattern '第[一二三四五六七八九十百]+条' <3 个生产文件> → 无命中（0）
+git diff --numstat（默认真实行数）→
+  111   1   docs/review/EXTERNAL-REVIEW-FIX-VERIFICATION.md（本验证记录）
+  22    2   roles/contract-counsel/SKILL.md
+  23    0   roles/dispute-counsel/SKILL.md
+  9     0   shared/checklists/contract-redlines.md
+（NOTE 以 git -c core.autocrlf=false 复跑，numstat 数字相同；两份生产文件的行尾换行差异计入行的增减，故本表另附删除内容核对）
+删除内容核对（唯一有删除的两个文件，实跑列出）→
+  roles/contract-counsel/SKILL.md 的 2 行删除＝文末署名段的 2 行被替换为含 D8 来源与「未移植条号与天数」的 2 行（内容为扩充，非删减；该文件尾部段落与既有第 4／4.5／5 段措辞未动）
+  docs/review/EXTERNAL-REVIEW-FIX-VERIFICATION.md 的 1 行删除＝追加附录时原来的单个「AI生成，不构成法律意见。」行被替换（本附录末节保留同一句）
+  另 2 个生产文件（roles/dispute-counsel/SKILL.md、shared/checklists/contract-redlines.md）删除行数为 0
+shared/checklists/contract-redlines.md hunk 行号（逐 hunk 实测）→
+  @@ -80,0 +81,4 @@ / @@ -82,0 +87 @@ / @@ -84,0 +90,2 @@ / @@ -86,0 +94,2 @@
+  → 新增 9 行插入点为 -80、-82、-84、-86（即 F1／F2／F3／F4 各自的子项插入点），全部落在 F 节内（现第 81–95 行）；E 节与 G 节的既有子项行号未变
+
+# 验收 3（样本正文不落盘；样本为定长子串，可按 sha256 复现；扫描口径＝工作区 871 个文件全文）
+S1  src=legal-assistant-pro/templates/demand-letter.md   len=82   sha256_16=D130E9F7CE0690EB   hits=0
+S2  src=qulv-china-legal-counsel-skill/README.md         len=59   sha256_16=A6A9B2C8F0220EB2   hits=0
+S3  src=awesome-legal-skills/skills/arbitration-clause-design-and-review-hafez-virjee/SKILL.md   len=131   sha256_16=6ACA81E8713BC973   hits=0
+total_hits=0
+
+# 验收 4
+(Select-String -Path 'docs/review/EXTERNAL-REVIEW-FIX-VERIFICATION.md' -Pattern 'D8').Count → 21
+#（本轮为落盘完成后的最终复跑值；该检索式不区分大小写，计数含附录内各条记录、对 `.work/d8-comparison.md` 的提及与本行自身）
+
+# 验收 5
+git log -1 --format=%H → 358ea044fed2075778ef4f780da1558b7b4539ec（与简报基线 358ea04 一致）
+```
+
+### 五、本附录边界
+
+- 本附录记录的是**许可门核验 + 方法蒸馏 + 文本落盘 + 静态自验**，与第 0 节同一口径：不证明宿主动态行为（第 4.6 段是否会被真的用于仲裁条款审查与仲裁程序处置，均需宿主实测）。
+- **未做**：上游方法在中国法下的正确性复核（本批只判断「许可是否放行」与「方法是否可移植」，未对上游实体内容作评价）；上游带条号内容的联网核验（按硬口径不移植条号与天数，故无核验对象）；仲裁机构名单、费用表与期限数字的移植与核实；两个中文仓库的非 skill 文件与其余 skill 目录的许可普查；`industries/` 行业包的交叉核验。
+- 上游材料只读未改；本批新增内容为对上游机制思想的中文重写，未复制其原文整句；本轮改动全部留在工作区，未提交、未推送。
