@@ -1524,4 +1524,148 @@ git diff 65b8f24 b76b21f --name-only
 
 ---
 
+## 附录（2026-09-15）：D7 英文 12 目录精读 · 方法蒸馏落盘（许可门 + 对照表 + 2 生产文件）
+
+> 本附录为**追加记录**，不改变前文第 1–5 节、两处补记、前述各附录与 D2／D3／D4a／D4b／D5a／D5b／D6 附录的任何结论。
+> 取材口径（硬）：本批 12 个目录**逐目录实取许可文件正文**，未凭 README、未凭 frontmatter、未凭记忆判断许可；顶层 `LICENSE`（CC BY-NC-ND 4.0）不作为逐目录依据。
+> 蒸馏口径（硬）：只移植**方法结构**（判定结构、工作流、谈判策略、复核手法），**不搬英美实体法内容、不搬原文整句**，全部落盘文字为中文重写。
+> 工具偏差登记：MCP `search_code` 本批不可用（auth 不足，实测报错），改用 `get_file_contents` 列目录 + `raw.githubusercontent.com` 逐文件取正文（`Invoke-WebRequest` 实测可用）。
+
+### 一、许可门核验（逐目录实取，开工第一步）
+
+12 目录许可文件名出现四种写法：`LICENSE`（2）／`LICENSE.txt`（3）／`LICENSE.TXT`（2）／`License`（1）。**按 `LICENSE` 单名去取，9 个目录会 404**——本批先列目录再按实际文件名取，故无一目录误判为「无许可」。
+
+| # | 目录 | 许可文件（实取名 → 大小 / blob sha） | 许可类型 | 结论 |
+| --- | --- | --- | --- | --- |
+| 1 | `contract-intelligence-workflow-reviewer-carl-ditzler` | `LICENSE.TXT` → 11357 B / `7a4a3ea2…` | Apache-2.0 | 可蒸馏 |
+| 2 | `contract-risk-analyzer-sneha-ganapavarapu` | 无许可文件（仅 README + SKILL） | 无许可 | **禁蒸** |
+| 3 | `ambiguity-report-seth-chandler` | `LICENSE` → 11358 B / `d6456956…` | Apache-2.0 | 可蒸馏 |
+| 4 | `ambiguity-stress-test-seth-chandler` | `LICENSE` → 11358 B / `d6456956…`（与 #3 同 blob） | Apache-2.0 | 可蒸馏 |
+| 5 | `tech-contract-negotiator-patrick-munro` | `LICENSE.txt` → 34523 B / `0ad25db4…` | **AGPL-3.0** | **禁蒸** |
+| 6 | `opposing-counsel-review-larissa-meredith-flister` | 无许可文件 | 无许可 | **禁蒸** |
+| 7 | `arbitration-clause-design-and-review-hafez-virjee` | `License` → 19088 B / `dbc4a3fb…` | **CC BY 4.0**（非 MIT/Apache） | **禁蒸** |
+| 8 | `employment-law-research-yue-deng-wu` | 无许可文件 | 无许可 | **禁蒸** |
+| 9 | `swiss-legal-source-and-authority-triage-enrique-g-zbinden` | `LICENSE.txt` → 1067 B / `0c558691…` | **MIT** | 可蒸馏 |
+| 10 | `outside-counsel-billing-and-performance-reviewer-carl-ditzler` | `LICENSE.TXT` → 11357 B / `7a4a3ea2…`（与 #1 同 blob） | Apache-2.0 | 可蒸馏 |
+| 11 | `scope-change-controller-scott-margetts` | `LICENSE.txt` → 11358 B / `d6456956…` | Apache-2.0 | 可蒸馏 |
+| 12 | `settlement-pressure-tester-larissa-meredith-flister` | 无许可文件（frontmatter 自述 agpl-3.0） | 无许可 | **禁蒸** |
+
+**汇总**：逐个核到结论——**可蒸馏 6 个**（#1 #3 #4 #9 #10 #11），**禁蒸 6 个**（#2 #5 #6 #7 #8 #12）。
+**与简报的偏差登记（从严，非放松）**：#7 实取为 **CC BY 4.0**（署名即可、**无 NC/ND 限制**），按简报许可门「MIT/Apache 放行」的字面口径**从严按禁蒸处理**，未纳入落盘；如后续要采纳，须先由用户确认「非 MIT/Apache 但仅要求署名」的许可是否放行。
+
+### 二、来源署名与许可要求
+
+| 来源（目录实取名） | 采用的什么（中文重写转述，未搬原句） | 许可 / 版权人 |
+| --- | --- | --- |
+| `ambiguity-stress-test-seth-chandler/SKILL.md` | 六族缺陷分类（内部矛盾／操作性用语模糊／定义边界模糊／无标准裁量／缺漏沉默／跨条张力）+ 七问自检（六族各一问 + 用语一致性）+「边缘事实、两读皆通」的场景构造质量线 | Apache-2.0；Seth J. Chandler |
+| `contract-intelligence-workflow-reviewer-carl-ditzler/SKILL.md` | 「建议立场／可退让底线」梯级与「要快就压缩解释、不压缩流程」的门控思想 | Apache-2.0；Carl Ditzler |
+| `scope-change-controller-scott-margetts/SKILL.md` | 范围变更五档裁定（明列在内／明列除外／合理延伸／未预见新工作／范围不变但量增）+「若客户追问会否改变报价」的重大性测试 | Apache-2.0；Scott Margetts |
+| `ambiguity-report-seth-chandler/SKILL.md`、`swiss-legal-source-and-authority-triage-enrique-g-zbinden/SKILL.md`、`outside-counsel-billing-and-performance-reviewer-carl-ditzler/SKILL.md` | 「先声明覆盖与依据、再下结论」的体例：覆盖说明行、依据来源优先次序、结论置信三级与「结论强度不得高于依据强度」 | Apache-2.0；Apache-2.0×2；MIT（Zbinden，版权人 duracell04） |
+
+**署名落实**：上述许可要求（Apache-2.0 与 MIT 均要求保留署名与许可声明）已在**受影响的生产文件末尾**各加一段「方法来源署名」，写明上游仓库、作者与许可；**上游目录实名与许可核验记录放在本附录**（本节第二节与第一节表），生产文件不再写目录名——理由见第四节验收 3 的「两要求冲突的处置登记」。
+**本行原登记不实的订正（2026-09-15 撤回修复）**：原写「禁蒸 6 目录**未被采用、未被署名**其方法」**不实**——第一节表 #6 `opposing-counsel-review-larissa-meredith-flister` 目录内**无任何许可文件**（其 frontmatter 自述 `apache-2.0` 不作许可依据），按简报许可门属**禁蒸**；但该目录的「对方视角复核」方法曾被误采纳，落入 `roles/dispute-counsel/SKILL.md` 新增的第 4.5 段，并在该文件文末被署名 Apache-2.0。该第 4.5 段、第 5 段指向行与该署名段已全段删除（见第三节 ① 行），撤回后该文件内容与基线 `062fb80` 完全一致。撤回后口径：落盘生产文件 **2 个**，禁蒸 6 目录方法**确未被采用、未被署名**。
+
+### 三、本轮落盘改动（撤回修复后：2 个生产文件 + 1 个对照表；全部在简报允许清单内）
+
+| # | 文件 | 落盘内容 | 性质 |
+| --- | --- | --- | --- |
+| ① | `roles/dispute-counsel/SKILL.md` | **已撤回**：原新增的第 4.5 段（对方视角复核六步：攻其一点／剥修辞重建／六类主攻线／裁判者视角／3 条打击点／在回避什么 + 三条硬规则）、第 5 段指向第 4.5 段的一行、文末「方法来源署名」段（署名 Larissa Meredith-Flister／Apache-2.0）三处已全部删除 | 生产文件；来源目录 #6 无许可文件属禁蒸，撤回后该文件与基线一致、无净改动 |
+| ② | `roles/contract-counsel/SKILL.md` | 仅新增**第 4.5 段**（六族缺陷筛查／七问自检／边界事实构造 → 落《审查意见书》歧义清单节）；第 4 段第 2 条加指向第 8 条的指针；第 4 段第 7 条补「让步序列」子条（换什么、对方怎么挡）；第 7 条后新增**第 8 条**「范围裁定五档 + 重大性测试」，原第 8 条顺延为第 9 条并同步改第 1 条内的指向；第 5 段补一行歧义清单交付要求；文末补「方法来源署名」段 | 生产文件；改动只落在第 4／4.5／5 段与文末署名 |
+| ③ | `shared/templates/review-opinion.md` | 仅新增**「三之二、歧义清单」节**（表头 + 六族取值 + 三条要求）；风险清单要求补一行「依据与依据强度」括注；新增**「八、来源与覆盖说明」**节（一行不可省略）；文末补「方法来源署名」段 | 模板文件；纯新增，未改既有七节编号与既有表头列 |
+| ④ | `.work/d7-comparison.md` | **新建**：12 目录 ×（许可文件实测名／大小／blob sha + 许可结论 + 可蒸馏与否 + 一句话方法 + 拟落点）+ 落盘取舍表 + 边界 | 非生产文件（对照表） |
+| ⑤ | `docs/review/EXTERNAL-REVIEW-FIX-VERIFICATION.md` | 本附录 | 追加记录，不改前文 |
+
+- 生产文件改动数：**2 个**（② ③；① 已撤回、撤回后无净改动，不计入），符合简报「≤3 个」。
+- **未落盘（超出候选，只记对照表后续）**：#1 的 12 道门完整脚手架、#10 的来源优先次序＋置信三级并入风险框架、#11 的来源证据当场记录并入台账模板、#9 的复核回执并入 `shared/templates/legal-opinion.md`（禁止触碰，本批未动）。
+- 禁止触碰文件核对：`outputs/external-review-39abd04.md` 未改；`.work/` 历史文件与本任务简报 `.work/task-d7-english-distill.md` **只读未改**；`shared/templates/legal-opinion.md` 未改；`industries/` 未改（本批只读）；F 盘其他项目未改（上游 12 目录抓取落在工作区外的 `F:\AIXM\_d7scratch` 暂存目录，事后已删）。
+- **未提交、未推送**，改动全部留在工作区。
+
+### 四、简报验收命令与真实输出（逐条实跑，2026-09-15）
+
+**验收 1（对照表存在 + 12 目录许可结论齐全）**
+
+```powershell
+(Select-String -Path '.work/d7-comparison.md' -Pattern '可蒸馏|禁蒸' | Measure-Object).Count
+# → 29
+(Select-String -Path '.work/d7-comparison.md' -Pattern 'LICENSE|Apache|MIT|BY-NC|无许可' | Measure-Object).Count
+# → 22
+```
+
+结论：**通过**。29 ≥ 12（每目录一行至少命中「可蒸馏」或「禁蒸」，另加汇总行与取舍节），许可类关键词 22 处有命中；12 目录**逐个**给出「目录名 + 许可文件实测名 + 大小/blob sha + 许可类型 + 可蒸馏/禁蒸（含理由）」五要素。
+
+**验收 2（落盘生产 ≤3 个 + 落盘内容命中方法关键词）**
+
+```powershell
+git diff --name-only
+# → docs/review/EXTERNAL-REVIEW-FIX-VERIFICATION.md
+#   roles/contract-counsel/SKILL.md
+#   shared/templates/review-opinion.md
+foreach($f in @('roles/contract-counsel/SKILL.md','shared/templates/review-opinion.md')){
+  (Select-String -Path $f -Pattern '仲裁|和解|歧义|让步|对方' | Measure-Object).Count
+}
+# → roles/contract-counsel/SKILL.md   : 17
+#   shared/templates/review-opinion.md: 7
+```
+
+结论：**通过**（2026-09-15 撤回修复后复跑）。落盘生产文件 **2 个**（≤3），两文件均命中方法关键词。**口径说明**：`git diff --name-only` 实测输出 3 行，其中 `docs/review/EXTERNAL-REVIEW-FIX-VERIFICATION.md` 为**验证记录（追加 D7 附录）**，按简报原文「生产文件 ≤3 个（不计对照表）」口径不计入生产文件；生产文件为 `roles/contract-counsel/SKILL.md`、`shared/templates/review-opinion.md`（**2 个**）。原落盘文件 `roles/dispute-counsel/SKILL.md` 已按撤回修复删除其全部新增内容，撤回后与基线一致、`git diff` 不再列出；该文件按同一检索式仍有 13 处命中，**全部为基线既有内容**，不计作落盘命中。对照表 `.work/d7-comparison.md` 未跟踪、不计入 `git diff`。
+**落盘性质实测**（`git diff --numstat`，撤回后复跑）：`docs/review/EXTERNAL-REVIEW-FIX-VERIFICATION.md` `144 增 / 0 删`、`roles/contract-counsel/SKILL.md` `30 增 / 3 删`、`shared/templates/review-opinion.md` `31 增 / 0 删`。3 行删除出现在 `roles/contract-counsel/SKILL.md`：为第 4 段原第 7／8 条被替换为新第 7 条（补让步序列子条）与新第 8 条（范围裁定），原第 8 条内容整体顺延为第 9 条并保留原措辞；另有原文末 `---` 分隔行随新段落插入被替换为 `+---`。**无既有条目被删减或改写**。**原粘贴数字更正**：原文写「28 增 / 2 删、32 增 / 0 删、30 增 / 0 删」，与 `git diff --numstat` 实际输出不符，已替换为本次复跑的真实输出。
+
+**验收 3（无上游原文整句复制 + 禁蒸目录零引用）**
+
+```powershell
+# 样本为本次直接抓取的上游原文长句；扫描口径：排除 .git/ 与二进制扩展名后的全部文件
+# 扫描文件数 = 874（本次实扫；原登记 869）
+S1 (77 字符, sha256 前 16 位 CF53E648F505C466) → hits = 0
+S2 (86 字符, sha256 前 16 位 EB7BEEEF37A5C727) → 样本原文未复原，本轮无法复跑（见结论说明）
+S3 (79 字符, sha256 前 16 位 FF0DD7AF61A46CF5) → hits = 0
+
+# 禁蒸 6 目录名在 2 个落盘生产文件中检索（逐名实测，2026-09-15 撤回修复后复跑）
+contract-risk-analyzer-sneha-ganapavarapu                      hits=0
+tech-contract-negotiator-patrick-munro                         hits=0
+opposing-counsel-review-larissa-meredith-flister               hits=0
+arbitration-clause-design-and-review-hafez-virjee              hits=0
+employment-law-research-yue-deng-wu                            hits=0
+settlement-pressure-tester-larissa-meredith-flister            hits=0
+# → total = 0
+```
+
+结论：**部分复跑**（2026-09-15 撤回修复后）。
+（1）**S1 与 S3 通过**。两个样本本轮按登记的 sha256 前 16 位从上游重新**逐字节复原**（对 `ambiguity-stress-test-seth-chandler/SKILL.md` 与 `opposing-counsel-review-larissa-meredith-flister/SKILL.md` 全文做定长（77／79 字符）子串 + sha256 比对，各唯一命中，即样本原文已复原并用于本轮工作区扫描）；**为守「不搬上游原文整句」口径，样本正文不落盘**，本附录仅登记其字符数、sha256 前 16 位与来源目录，不在本文件内引用样本原句。两个样本在工作区（874 个文件）**零命中**。
+（2）**S2 无法复跑，不作通过声明**。S2（86 字符，原文登记取自同名上游技能的「核心原则段」，sha256 前 16 位 `EB7BEEEF37A5C727`）本轮**未能复原**：对 `ambiguity-stress-test-seth-chandler/SKILL.md`、`ambiguity-report-seth-chandler/SKILL.md` 与仓库 `README.md` 全文做 86 字符定长子串 + sha256 比对（含换行归一的三种变体、UTF-8 与 UTF-16LE 两种编码）均无命中；该样本原文当时未落盘，构造方式不可考，故本轮既不能复跑、也不能给出其 hits 值，**不计入通过**。可核事实：S2 取自 #4 `ambiguity-stress-test-seth-chandler`（Apache-2.0，非禁蒸），且撤回修复只删除中文重写内容，未新增或删除任何上游英文文本，S1／S3 的零命中不受影响。
+（3）**禁蒸 6 目录名零引用通过**：在撤回后的 2 个落盘生产文件（`roles/contract-counsel/SKILL.md`、`shared/templates/review-opinion.md`）逐名实测 6 个 0，`total = 0`；另对已撤回的 `roles/dispute-counsel/SKILL.md` 复扫同 6 个目录名亦为 0。
+
+**两要求冲突的处置登记（2026-09-15 撤回修复后订正）**：原登记写「中途实测该检索曾出现 `hits=1` —— 命中的是 `opposing-counsel-review-larissa-meredith-flister`，而该目录许可为 **Apache-2.0（可蒸馏）**，正文中它是由**署名行**引入的，并非蒸馏引用」。其中**「该目录许可为 Apache-2.0」为不实登记**：第一节表 #6 实测该目录内**无任何许可文件**，按简报许可门属**禁蒸**（其 SKILL.md frontmatter 自述 `apache-2.0`，与 #12 自述 `agpl-3.0` 同一性质，均**不作许可依据**）。因此该 `hits=1` 不是「可蒸馏来源的署名」，而是**禁蒸目录的方法已被采纳并写入生产文件**的越界信号；原登记据此得出的结论（「既满足署名要求，又使生产文件对上游目录名一律零引用」）**因前提错误而不成立**——署名本身即证明该禁蒸方法已被蒸馏落盘。**处置**：`roles/dispute-counsel/SKILL.md` 的第 4.5 段、第 5 段指向行与该署名段已全段删除，撤回后该文件与基线一致（见第三节 ① 行、第二节订正段）。**仍然有效、继续适用的部分**：生产文件内不写上游目录实名，上游目录实名与 blob 核验登记在本附录（第一、二节）——该取舍对撤回后的 2 个落盘生产文件继续适用，撤回后禁蒸 6 目录名在这 2 个文件中零引用（复跑 total = 0）。
+
+**验收 4（D7 附录在验证记录，含许可表＋落盘表）**
+
+```powershell
+(Select-String -Path 'docs/review/EXTERNAL-REVIEW-FIX-VERIFICATION.md' -Pattern 'D7' | Measure-Object).Count
+# → 17
+```
+
+结论：**通过**（撤回修复后复跑）。本附录含第一节**许可表**（12 目录逐目录许可结论）、第二节来源署名（含目录实名与许可）、第三节**落盘表**（2 生产文件 + 1 对照表 + 本附录）、本节验收输出与第五节边界。口径提示：该检索式为 `Select-String` 默认**不区分大小写**，`D7` 亦命中 `.work/d7-comparison.md` 等小写写法，故计数不等于「D7 附录」出现次数；复跑值由原登记的 16 变为 17，差额恰为本行新增的对 `.work/d7-comparison.md` 的提及（撤回修复前本行不含该串），非附录结论变化。
+
+**验收 5（基线未变 + 未提交推送）**
+
+```powershell
+git log -1 --format=%H
+# → 062fb802b55cd36268e847e515335c94e3273e8c
+git status --porcelain
+# →  M docs/review/EXTERNAL-REVIEW-FIX-VERIFICATION.md
+#    M roles/contract-counsel/SKILL.md
+#    M shared/templates/review-opinion.md
+#   ?? .workbuddy-ai/
+```
+
+结论：**通过**（撤回修复后复跑）。HEAD 仍为简报所述基线 `062fb80`（完整哈希 `062fb802b55cd36268e847e515335c94e3273e8c`），本批**未提交、未推送**；工作区为上述 3 个 `M`（2 个落盘生产文件 + 本验证记录），加任务开始前既存的未跟踪目录 `?? .workbuddy-ai/`（非本批产生）。`roles/dispute-counsel/SKILL.md` 撤回修复后已与基线一致，不再出现在 `git status`。对照表 `.work/d7-comparison.md` 因 `.work/` 被忽略而未出现在 `git status`。
+
+### 五、本附录边界
+
+- 本附录记录的是**许可门核验 + 方法蒸馏 + 静态自验**，与第 0 节同一口径：不证明宿主动态行为（歧义清单节是否会被真的填写，均需宿主实测）。撤回登记：原列于本括注的「第 4.5 段复核是否会被真的在出价前调用」指向 `roles/dispute-counsel/SKILL.md` 的第 4.5 段，该段已撤回（来源目录 #6 无许可文件属禁蒸，见第一节表、第二节订正段、第三节 ① 行），不存在可被调用的复核段，故该动态边界项随之取消。
+- **未做**：该仓库全部 skill 目录的许可普查（本批只核 12 个目录，结论只对这 12 个有效）；#7（CC BY 4.0）与 #5（AGPL-3.0）的可用性法律判断（本批按简报字面口径从严处理，未做进一步法律分析）；#2／#6／#8／#12 的替代来源寻找；超出候选的 4 项缺口落盘（见第三节）。
+- **方法不评测上游质量**：本批只判断「许可是否放行」与「方法是否可移植」，未对上游内容准确性作评价。
+- 本轮改动全部留在工作区，未提交、未推送。
+
+---
+
 AI生成，不构成法律意见。
