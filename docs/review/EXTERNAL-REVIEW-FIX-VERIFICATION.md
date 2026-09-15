@@ -340,3 +340,50 @@ AI生成，不构成法律意见。
 ### 三、本节边界
 
 本次只做**静态走查**与**官方源核验**两件事，不冒充动态宿主测试。未在本节验证的事项：自动触发命中率、无检索环境降级路径端到端、`gsxt.gov.cn` 可用性、description 截断、宿主 skill 加载、降级链动态行为。
+
+## 附录（2026-09-15）：对标深读采纳包落盘 + 借鉴署名 + 自我纠正
+
+> 本附录为**追加记录**，不改变前文第 1–5 节与两处补记的任何结论。核验过程与证据见 `.work/benchmark-reverification-20260915.md`（MCP 逐文件核验，9 项成立 + 3 修正）。
+> 版权口径（硬）：学结构和方法，不搬原文。Apache-2.0 可借鉴改写后自用并署名；AGPL-3.0 只学思想、自己重写，不抄原文；无 LICENSE 的按默认版权所有处理，只学思想、不搬原文、署名致谢。本附录全部落盘内容均为中文重写，未复制任何上游原文整句。
+
+### 一、本轮落盘的四个采纳包与改动文件
+
+| # | 采纳包 | 落盘位置 | 改动文件 |
+| --- | --- | --- | --- |
+| ① | 证据分类 A–E（材料明示 / 核验源明示 / 有限推定 / 未找到 / 假设） | 总纲第 4 段新增 4.1 节；第 0 段第 1 条一句呼应 | `legal-dept/SKILL.md` |
+| ② | 隐性风险专项检查（定义陷阱 / 交叉引用链 / 存活条款 / 并入引用 / 术语漂移 + 危险措辞红旗清单） | 合同红线清单新增 K 节 | `shared/checklists/contract-redlines.md` |
+| ③ | 标准立场列（应然标准 + 修改进路 + 可退让底线三件套） | 审查意见书风险清单表新增「标准立场」列及写法要求 | `shared/templates/review-opinion.md` |
+| ④ | 转介三级触发分级（必须转介 / 强烈建议转介 / 考虑转介） | 转介单第三节内新增 3.1–3.3 分级 | `shared/templates/referral-form.md` |
+
+未采纳项（维持不动）：定级说理四维度（后果 / 可能性 / 金额 / 不对等）仅作为说理用，不改动 `shared/risk-framework.md` 锚点结构；frontmatter 许可字段、合同岗「先问组织范本」两项本轮不在采纳包内。
+
+### 二、借鉴来源署名与许可
+
+| 来源 | 采用的什么 | 许可 | 处理方式 |
+| --- | --- | --- | --- |
+| `lawve-ai/awesome-legal-skills` → `skills/source-locked-verification-larissa-meredith-flister/SKILL.md`（作者 Larissa Meredith-Flister，version 2026-05-13） | 五级证据分类的**分类思想**与「缺货就说没找到」机制 | AGPL-3.0 | 只学思想，**中文重写为 A–E 企业法务版**（材料明示 / 核验源明示 / 有限推定 / 未找到 / 假设），未抄原文 |
+| `lawve-ai/awesome-legal-skills` → `skills/nda-reviewer-anthropic/SKILL.md`（作者 Anthropic，version 2026.01.30） | 标准立场 + 红线进路 + 对方拒绝时的 fallback | Apache-2.0 | 借鉴结构，改写后自用；风险清单「标准立场」列的三件套写法源自此 |
+| `lawve-ai/awesome-legal-skills` → `skills/playbook-reviewer-anthropic/SKILL.md`（作者 Anthropic，version 2026.01.30） | 「先找组织 playbook，没有才用通用标准并声明」；Redline 的 Priority / Fallback 结构 | Apache-2.0 | 同上，标准立场的依据优先级写入审查意见书模板 |
+| `lawve-ai/awesome-legal-skills` → `skills/legal-risk-assessor-anthropic/SKILL.md`（作者 Anthropic，version 2026.01.30） | 转介三级触发（Mandatory / Strongly Recommended / Consider）与每级情形 | Apache-2.0 | 按中国法务能力圈改写为必须转介 / 强烈建议转介 / 考虑转介，未抄英文原表 |
+| `zubair-trabzada/ai-legal-claude`（1733 ★，4 commits，最后 2026-03-27） | 隐性风险检查维度、加权打分方法论（用于自我纠正，**未采纳其打分**） | 无 LICENSE 文件（GitHub 仓库 `license: null`） | 按默认版权所有处理：只学思想、不搬原文，在此署名致谢 |
+
+说明：四个 Anthropic 文件与 source-locked 文件的 frontmatter（author / license / version）已于 2026-09-15 逐字核验；`ai-legal-claude` 根目录无 LICENSE、README 无许可节，按无许可 = 默认版权所有处理，严于 Apache-2.0。
+
+### 三、自我纠正：伪量化批评的理由修正
+
+- 原批评：ai-legal-claude 的加权打分是「伪量化、权重无依据」。
+- 核验结论：**该批评对方法论层面不成立**。`agents/legal-risks.md` 有完整方法论——严重度 40% × 触发可能性 25% × 金额敞口 20% × 不对等程度 15%，Composite 公式与每档定义齐全。
+- 修正后理由：其阈值**未校准**（金额档为经验取值）、**把美国法假设写死**（竞业期限、at-will 等）、**无验证数据**。因此对企业法务场景而言，未校准的分数会制造**虚假精确感**。
+- **裁决不变**：全套装继续禁用 0-100 量化分，定级只用低 / 中 / 高 / 极高四级 + 判定锚点。理由从「人家没方法论」改为「未校准的分数不适合企业法务场景」。
+
+### 四、对 §4-2 旧结论的三处修正
+
+1. **ai-legal-claude skill 数 13 非 14**：README 自称 14，但命令表 + 项目结构树 + MCP file 树三处均为 13 个 skill 目录（agents 5 个无误）。对外引用写 13。
+2. **legal-risk-assessor 是四级不是三级**：GREEN / YELLOW / **ORANGE** / RED，Score = Severity × Likelihood（5×5 矩阵）。ORANGE = 高、RED = 极高，与我方低 / 中 / 高 / 极高**逐级对应**，互相印证强度高于旧结论所写「少一级极高」。
+3. **ai-legal-claude 无 LICENSE 文件**：旧结论「动笔前先确认」现闭环——按无许可 = 默认版权所有处理，只学思想、不搬原文、署名致谢（见本节第二表末行）。
+
+另记新鲜度：`ai-legal-claude` 仅 4 commits、最后更新 2026-03-27（实质停滞）；`awesome-legal-skills` 持续同步、最后更新 2026-09-04。对外引用时以后者为主要来源。
+
+### 五、本附录边界
+
+本附录记录的是**文本与结构落盘 + 来源核验**，与第 0 节同一口径：不证明宿主动态行为。上游原文只读未改，本仓库未复制其原文整句；本轮改动全部留在工作区，未提交、未推送。
