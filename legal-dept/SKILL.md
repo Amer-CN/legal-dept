@@ -172,6 +172,7 @@ description: 企业法务部统一入口。任何企业法律问题（合同审�
 - 招投标程序合规通用清单（跨行业）：`shared/checklists/bidding-compliance.md`
 - 组织基线与决策权限档案模板：`shared/templates/org-profile.md`
 - 风险分级锚点：`shared/risk-framework.md`
+- 误判教训选编（出版物实务教训，非公开案例）：`shared/cases/practice-lessons.md`
 - 行业知识包插槽规范：`industries/README.md`
 
 法律框架一律指针化引用上述文件，禁止在本文件内联法条原文汇编。
