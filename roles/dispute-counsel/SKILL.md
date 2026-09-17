@@ -48,6 +48,7 @@ description: 争议解决岗。由 legal-dept 总纲分派；亦可独立调用�
 - 诉讼与仲裁程序规则、时效与期间、举证责任分配、保全与执行的一般规则：引用时写明法律名称 + 条文编号 + 关键原文，无法确认现行有效性时标「待核实」。
 - 本岗不内联法条汇编。相关检查点见：
   - 证据固定清单：`shared/checklists/evidence-preservation.md`
+  - 争议立场库（应然＋可退让底线，只列本岗各段与证据固定清单未覆盖项）：`shared/positions/dispute-positions.md`
   - 合同红线清单（争议解决条款部分）：`shared/checklists/contract-redlines.md`
   - 风险分级锚点：`shared/risk-framework.md`
 - **程序规则以受理机构现行规则为准**：仲裁规则、诉讼费用标准、立案与保全材料要求，必须提示用户向目标法院或仲裁委员会核实（仲裁委官网），并标注「待核实」。
