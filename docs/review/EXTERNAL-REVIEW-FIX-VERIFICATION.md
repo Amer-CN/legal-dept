@@ -3917,3 +3917,164 @@ Select-String 'E25' docs/review/EXTERNAL-REVIEW-FIX-VERIFICATION.md → 有命�
 - 本附录记录的是**文本与结构落盘 ＋ 静态自验**，与第 0 节同一口径：不证明宿主在真实会话中会据此产生预期行为（新增条目是否会被真的逐项引用、指针是否会被真的读取，均需宿主实测）。
 - **未做**：八本原书全本通读（只读八份合并稿的【标准立场】节）；八稿自述缺口未补——`16-kaiting.md` 第 8 行载明仅 P1 自带来源说明、P2—P4 未标注所出书目与章次；`17-susongyoufang.md` 第 13 行载明四片均未标注所出书目、作者与章次；`19-yiyanyou.md` 第 5 行载明六片未自带覆盖说明；`21-zhengmingzeren.md` 第 8 行载明仅 P1 自带来源说明、P2—P4 未标注所出书目与章次；`28-sunwei.md` 第 42–44 行载明九片未声明覆盖区间；`29-xujie.md` 第 35–37 行载明三片未声明覆盖区间、六片间存在明显内容跳跃——均照稿登记，未作推断补写；【标准立场】节条目的全量落盘（本批按未覆盖口径精选，八稿【标准立场】合计实测 652 条中收录 50 条）；草稿所涉法条编号、门槛、期限与比例数字的联网核验（按硬口径不移植，故无核验对象）；书中内容在中国法下的实体正确性复核；八稿【检查项】【误判教训】两类的落盘（不在本批取材范围）。
 - 八份取材稿与 `.work/` 下历史文件为**只读输入**，本批未修改。
+
+---
+
+## 附录（2026-09-17）：民法典释义核验底本 · 生产文件条号引用存在性核验（只核验，不改写）
+
+> 本附录为**追加记录**，不改变前文第 1–5 节、两处补记与前述各附录的任何结论。
+> 口径（硬）：只做条号存在性与编章归属核验；**不评价释义观点**；**不搬运释义原文整句**（本附录引底本一律只给行号，不给整句）；底本无载明的一律记「底本未载明」，**不推断**。
+
+### 一、底本、对象与结论口径
+
+- 底本（只读，本批未修改）：`.work/distill-inbox/weread-exporter/output/中华人民共和国民法典释义及适用指南.md`，实测 5,299,863 字节 / 24,272 行（`Get-Content -ReadCount 0` 计；行尾换行另计）。底本第 24 行载明该法典由七个编构成、条文总量为 1260 条。
+- 核验对象（**只读比对，未改一字**）：`roles/`、`shared/`、`industries/` 下全部 md，共 32 个文件。
+- 结论四值（前三值即简报要求的三态）：
+
+| 结论 | 判据 | 附随要求 |
+| --- | --- | --- |
+| **存在** | 底本有该条号，且生产文件所述编章归属与底本一致 | 必附底本行号 |
+| **不存在** | 底本无该条号 | 必附检索式与命中数 |
+| **存疑** | 底本有该条号，但生产文件所述编章归属或要点不能确证 | 必附底本位置 |
+| **底本未载明** | 引用对象不是民法典（司法解释／行政法规／部门规章／其他法律），本底本作为民法典释义书不含其条文 | 必附负向检索留痕 |
+
+- 底本自述体量核验：以行首「第X条」为条头计，底本实测 **1203** 个条头，最大条号 1260、最小 1，**无重复条头**；其余 57 条无独立条头、仅在其他条的释义中被交叉引用（实测这 57 条全文均有 ≥1 处出现，**1–1260 全部可达**）。
+
+### 二、清单计数（脚本实测）
+
+```
+扫描文件数                = 32
+「第X条」形式原始命中     = 67   （含「第N–M条」区间式 1 条、「第X、Y条」并列式 1 条）
+减：段内自指（非法律引用） = 9    （见 §五，逐条给依据）
+核验清单条数              = 58
+```
+
+脚本口径：对 32 个文件逐行全匹配，先取区间式 `第N–M条`、并列式 `第X、Y条`，再取单式 `第[0-9一二三四五六七八九十百千零两]+条`（含全角／半角空格变体），三者不重复计数。技能内部「第 4 段第 9 条」一类段内自指不计入法条引用。
+
+### 三、核验清单（58 条，逐条结论）
+
+| # | 位置（文件:行） | 条号 | 引用对象 | 结论 | 底本位置／检索留痕 |
+| --- | --- | --- | --- | --- | --- |
+| 1 | industries/construction/SKILL.md:26 | 第41条 | 解释一第41条 | 底本未载明 | §四-N1 |
+| 2 | industries/construction/SKILL.md:26 | 第21条 | 解释二第21条 | 底本未载明 | §四-N1 |
+| 3 | industries/construction/SKILL.md:37 | 第一条 | 解释二第一条 | 底本未载明 | §四-N1 |
+| 4 | industries/construction/SKILL.md:38 | 第二条 | 解释二第二条 | 底本未载明 | §四-N1 |
+| 5 | industries/construction/SKILL.md:39 | 第三条 | 解释二第三条 | 底本未载明 | §四-N1 |
+| 6 | industries/construction/SKILL.md:40 | 第四条 | 解释二第四条 | 底本未载明 | §四-N1 |
+| 7 | industries/construction/SKILL.md:41 | 第五条 | 解释二第五条 | 底本未载明 | §四-N1 |
+| 8 | industries/construction/SKILL.md:42 | 第六条 | 解释二第六条 | 底本未载明 | §四-N1 |
+| 9 | industries/construction/SKILL.md:43 | 第七条 | 解释二第七条 | 底本未载明 | §四-N1 |
+| 10 | industries/construction/SKILL.md:44 | 第八条 | 解释二第八条 | 底本未载明 | §四-N1 |
+| 11 | industries/construction/SKILL.md:45 | 第九条 | 解释二第九条 | 底本未载明 | §四-N1 |
+| 12 | industries/construction/SKILL.md:46 | 第十条 | 解释二第十条 | 底本未载明 | §四-N1 |
+| 13 | industries/construction/SKILL.md:47 | 第十一条 | 解释二第十一条 | 底本未载明 | §四-N1 |
+| 14 | industries/construction/SKILL.md:48 | 第十二条 | 解释二第十二条 | 底本未载明 | §四-N1 |
+| 15 | industries/construction/SKILL.md:49 | 第十三条 | 解释二第十三条 | 底本未载明 | §四-N1 |
+| 16 | industries/construction/SKILL.md:50 | 第十四条 | 解释二第十四条 | 底本未载明 | §四-N1 |
+| 17 | industries/construction/SKILL.md:51 | 第十五条 | 解释二第十五条 | 底本未载明 | §四-N1 |
+| 18 | industries/construction/SKILL.md:52 | 第十六条 | 解释二第十六条 | 底本未载明 | §四-N1 |
+| 19 | industries/construction/SKILL.md:53 | 第十七条 | 解释二第十七条 | 底本未载明 | §四-N1 |
+| 20 | industries/construction/SKILL.md:54 | 第十八条 | 解释二第十八条 | 底本未载明 | §四-N1 |
+| 21 | industries/construction/SKILL.md:55 | 第十九条 | 解释二第十九条 | 底本未载明 | §四-N1 |
+| 22 | industries/construction/SKILL.md:56 | 第二十条 | 解释二第二十条 | 底本未载明 | §四-N1 |
+| 23 | industries/construction/SKILL.md:57 | 第二十一条 | 解释二第二十一条 | 底本未载明 | §四-N1 |
+| 24 | industries/construction/SKILL.md:58 | 第二十二条 | 解释二第二十二条 | 底本未载明 | §四-N1 |
+| 25 | industries/construction/SKILL.md:59 | 第二十三条 | 解释二第二十三条 | 底本未载明 | §四-N1 |
+| 26 | industries/construction/checklists/claim-limitation.md:14 | 第10条 | 解释一第10条 | 底本未载明 | §四-N1 |
+| 27 | industries/construction/checklists/claim-limitation.md:14 | 第20条 | 解释一第20条 | 底本未载明 | §四-N1 |
+| 28 | industries/construction/checklists/claim-limitation.md:15 | 第21条 | 解释一第21条 | 底本未载明 | §四-N1 |
+| 29 | industries/construction/checklists/claim-limitation.md:16 | 第二条 | 质量保证金管理办法第二条 | 底本未载明 | §四-N5 |
+| 30 | industries/construction/checklists/claim-limitation.md:16 | 第十一条 | 质量保证金管理办法第十一条 | 底本未载明 | §四-N5 |
+| 31 | industries/construction/checklists/claim-limitation.md:16 | 第17条 | 解释一第17条 | 底本未载明 | §四-N1 |
+| 32 | industries/construction/checklists/claim-limitation.md:17 | 第41条 | 解释一第41条 | 底本未载明 | §四-N1 |
+| 33 | industries/construction/checklists/claim-limitation.md:17 | 第21条 | 解释二第21条 | 底本未载明 | §四-N1 |
+| 34 | industries/construction/checklists/claim-limitation.md:18 | 第四十条 | 建设工程质量管理条例第四十条 | 底本未载明 | §四-N4 |
+| 35 | industries/construction/checklists/claim-limitation.md:36 | 第10条 | 解释一第10条 | 底本未载明 | §四-N1 |
+| 36 | industries/construction/checklists/claim-limitation.md:36 | 第17条 | 解释一第17条 | 底本未载明 | §四-N1 |
+| 37 | industries/construction/checklists/claim-limitation.md:36 | 第20条 | 解释一第20条 | 底本未载明 | §四-N1 |
+| 38 | industries/construction/checklists/claim-limitation.md:36 | 第21条 | 解释一第21条 | 底本未载明 | §四-N1 |
+| 39 | industries/construction/checklists/claim-limitation.md:36 | 第41条 | 解释一第41条 | 底本未载明 | §四-N1 |
+| 40 | industries/construction/checklists/claim-limitation.md:37 | 第13条 | 解释二第13条 | 底本未载明 | §四-N1 |
+| 41 | industries/construction/checklists/claim-limitation.md:37 | 第21条 | 解释二第21条 | 底本未载明 | §四-N1 |
+| 42 | industries/construction/checklists/claim-limitation.md:40 | 第二条 | 质量保证金管理办法第二条 | 底本未载明 | §四-N5 |
+| 43 | industries/construction/checklists/claim-limitation.md:40 | 第十一条 | 质量保证金管理办法第十一条 | 底本未载明 | §四-N5 |
+| 44 | industries/construction/checklists/claim-limitation.md:41 | 第四十条 | 建设工程质量管理条例第四十条 | 底本未载明 | §四-N4 |
+| 45 | industries/construction/checklists/claim-limitation.md:41 | 第四十条 | 建设工程质量管理条例第四十条 | 底本未载明 | §四-N4 |
+| 46 | industries/construction/checklists/completion-settlement-safety.md:8 | 第41条 | 解释一第41条 | 底本未载明 | §四-N1 |
+| 47 | industries/construction/checklists/completion-settlement-safety.md:8 | 第21条 | 解释二第21条 | 底本未载明 | §四-N1 |
+| 48 | industries/construction/checklists/completion-settlement-safety.md:10 | 第13条 | 解释二第13条 | 底本未载明 | §四-N1 |
+| 49 | industries/construction/checklists/construction-contract.md:10 | 第13条 | 解释二第13条 | 底本未载明 | §四-N1 |
+| 50 | industries/construction/regulations.md:9 | 第788–808条 | 民法典第三编第十八章建设工程合同 | **存在** | 底本 L9001（第三编 合同）、L11665（第二分编 典型合同）、L15011（第十八章 建设工程合同）、L15014（章首载明本章共二十一条）、L15016–L15396（788 至 808 共 21 个条头逐条在位）、L15415（第十九章 运输合同，起于 809）；编章归属与生产文件一致 |
+| 51 | industries/construction/regulations.md:9 | 第七百八十八条 | 民法典第七百八十八条 | **存在** | 底本 L15016（条头在位）；编章归属：第三编第十八章，与生产文件一致 |
+| 52 | industries/construction/regulations.md:10 | 第八百零七条 | 民法典第八百零七条 | **存在** | 底本 L15356（条头在位）、L15358（条文主旨行）；编章归属：第三编第十八章建设工程合同，与生产文件一致 |
+| 53 | industries/construction/regulations.md:10 | 第四十一条 | 解释一第41条 | 底本未载明 | §四-N1 |
+| 54 | industries/construction/regulations.md:10 | 第二十一条 | 解释二第21条 | 底本未载明 | §四-N1 |
+| 55 | industries/construction/regulations.md:11 | 第八十五条 | 建筑法第八十五条 | 底本未载明 | §四-N2 |
+| 56 | industries/construction/regulations.md:12 | 第六十八条 | 招标投标法第六十八条 | 底本未载明 | §四-N3 |
+| 57 | industries/construction/regulations.md:18 | 第二十八条 | 工程总承包管理办法第二十八条 | 底本未载明 | §四-N6 |
+| 58 | industries/construction/regulations.md:19 | 第二十三条 | 解释二第二十三条 | 底本未载明 | §四-N1 |
+
+### 四、底本未载明的负向检索留痕（非推断）
+
+| 标签 | 引用对象 | 底本检索式 | 命中数 | 命中位置与判读 |
+| --- | --- | --- | --- | --- |
+| N1 | 法释〔2020〕25号（解释一）／法释〔2026〕12号（解释二） | `法释` / `解释二` / `解释一` | 0 / 0 / 2 | 底本全文无「法释」字样、无「解释二」字样；2 处「解释一」经逐处核对均为词素（L412 系「该司法解释一方面」这一表述，L2892 系合同解释方法论述中的词素），非司法解释简称。底本另出现「司法解释第X条」11 处（L3906、L3994×2、L11756×2、L11790、L11852、L11910、L11926、L12436×2），指向民法通则意见、诉讼时效规定、买卖合同解释等他项司法解释，**均非解释一／解释二条号**。L15112 一处提及建设工程施工合同司法解释书名，同段内仅有「第799条」「第61条」两个条号，**未给该解释条号** |
+| N2 | 建筑法 | `建筑法第[条号]条` | 1 | 仅 L15112「建筑法第61条」。另有转引式 2 处（L5624、L5742 的「该法第39条第2款」「第40条」）。**无第八十五条** |
+| N3 | 招标投标法 | `招标投标法第[条号]条` | 0 | 底本提及招标投标法共 3 处，分布于 L12468（1 处）、L15054（2 处），均为「招标投标的方式／买卖」表述，**均无条号**。**无第六十八条** |
+| N4 | 建设工程质量管理条例 | `质量管理条例第[条号]条` | 0 | 底本 5 处提及该条例（L12132、L15186、L15232、L15242、L15254），均无条号。**无第四十条** |
+| N5 | 建设工程质量保证金管理办法 | `建设工程质量保证金管理办法` | 0 | 底本全文无该办法字样。连带检索：`缺陷责任期` 0、`质量保证金` 0、`保修金` 0 |
+| N6 | 房屋建筑和市政基础设施项目工程总承包管理办法 | `工程总承包管理办法` | 0 | 底本全文无该办法字样 |
+
+### 五、排除项：段内自指 9 条（非法律条号引用）
+
+| # | 位置（文件:行） | 条号 | 判定依据 |
+| --- | --- | --- | --- |
+| E1 | roles/contract-counsel/SKILL.md:60 | 第9条 | 同句自注「本条之前先做第 9 条」，指第 4 段第 9 项 |
+| E2 | roles/contract-counsel/SKILL.md:61 | 第8条 | 「范围裁定（新增工作／量增）见第 8 条」，指第 4 段第 8 项 |
+| E3 | roles/contract-counsel/SKILL.md:70 | 第2条 | 「用于界定第 2 条审查范围」，指第 4 段第 2 项 |
+| E4 | roles/contract-counsel/SKILL.md:85 | 第1–3条 | 「第 1–3 条产出的条目落《审查意见书》」，指第 4.5 段第 1–3 项 |
+| E5 | roles/contract-counsel/SKILL.md:89 | 第9、10条 | 「两者交付物与产出顺序不同（见第 9、10 条）」，指第 4.6 段第 9、10 项 |
+| E6 | roles/contract-counsel/SKILL.md:150 | 第7条 | 「第 4 段第 7 条的「让步序列」」 |
+| E7 | roles/contract-counsel/SKILL.md:150 | 第8条 | 「与第 8 条的「范围裁定五档 + 重大性测试」」 |
+| E8 | roles/dispute-counsel/SKILL.md:77 | 第3条 | 「本条只适用于第 0 段第 3 条与第 6 段列明的转介情形」 |
+| E9 | shared/templates/org-profile.md:55 | 第9条 | 「见 `roles/contract-counsel/SKILL.md` 第 4 段第 9 条」 |
+
+### 六、附注：未计入 58 条清单的条号书写形式
+
+`industries/construction/regulations.md:9` 状态备注含裸条号列举「（788、791、799、802等）」，书写形式不是「第X条」，脚本未计入清单。逐条回底本核验：
+
+| 裸条号 | 底本位置 | 结论 |
+| --- | --- | --- |
+| 788 | L15016 | 存在（第三编第十八章） |
+| 791 | L15060 | 存在（第三编第十八章） |
+| 799 | L15218 | 存在（第三编第十八章） |
+| 802 | L15278 | 存在（第三编第十八章） |
+
+### 七、超出三态的备注（1 条，不计入三态统计，只记录不改写）
+
+- `industries/construction/regulations.md:10` 要点栏「行使期限有法定限制，逾期失权」写在民法典第八百零七条行内。底本 L15390 把优先受偿权的行使期限列为立法中的**争议问题**，即民法典本条**未规定**该期限（底本 L15390 所在段落标题即「优先受偿权的行使期限」）；底本全文检索 `十八个月` 命中 **0**。故该「法定限制」不能归于民法典第八百零七条本身；其来源即该行状态备注自述的法释〔2020〕25号第四十一条／法释〔2026〕12号第二十一条，二者底本均未载明（§四-N1）。
+- 按简报口径，**只记录，不改写既有条目**（发现错误另开修复任务）。
+
+### 八、三态分布（实测）
+
+```
+核验清单条数 = 58
+  存在         =  3    （#50 #51 #52，全部为民法典条号）
+  不存在       =  0
+  存疑         =  0    （本轮无「底本有条号但编章归属或要点不能确证」的条目）
+  底本未载明   = 55
+      其中 司法解释（解释一 13 ＋ 解释二 32）           = 45
+           行政法规（建设工程质量管理条例）             =  3
+           部门规章／部门规范性文件（质量保证金办法 4 ＋
+                     工程总承包管理办法 1）              =  5
+           其他法律（建筑法 1 ＋ 招标投标法 1）          =  2
+另：排除项（段内自指）9 条；附注裸条号 4 条（均存在）；超三态备注 1 条。
+```
+
+### 九、边界
+
+- 本附录只做**条号存在性与编章归属**核验，**不评价释义观点**，不证明生产文件所引条文内容在中国法下的实体正确性。
+- 底本为 2020 年 7 月出版的民法典释义书，**不含司法解释、行政法规、部门规章与其他法律条文**，故 58 条清单中 55 条只能记「底本未载明」——这不是「不存在」，也不构成对它们的否定；它们仍需各自法源核验。
+- 底本 57 条无独立条头（仅被交叉引用）。本轮清单内无条号落在这些条上；若后续引用落在其上，需换底本。
+- 本轮「不存在」0 条、「存疑」0 条，**不等于生产文件全部引用已核验通过**：已确证存在的仅 3 条（民法典 788–808 区间、788、807），其余 55 条待各自法源核验。
+- **未做**：生产文件既有文字的任何改写（按简报只追加本附录）；底本全本通读；司法解释、行政法规、部门规章、其他法律条号的联网核验；释义观点与生产文件要点的实体比对。
