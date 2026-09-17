@@ -66,6 +66,7 @@ description: 建筑工程行业包。施工企业的招投标合规、施工合�
 - 农民工工资、劳务用工 → `employment-counsel` + 本包 `checklists/migrant-wage.md`。
 - 工程款催收、结算争议、索赔谈判、已进入诉讼仲裁 → `dispute-counsel` + 本包 `checklists/completion-settlement-safety.md`。
 - 签证索赔、工期顺延、竣工结算、质保金返还、优先受偿等**期限**测算与失权风险 → 先过本包 `checklists/claim-limitation.md`（签证索赔时效表，逐项列时限、出处与合同优先声明）。
+- 该事项上我方主张到什么程度、退到哪里为止（**主张强度**）→ `shared/positions/construction-positions.md`（建工立场库，应然＋可退让底线，只列本包三清单未覆盖项）。
 - 多岗交叉（如分包合同无效又拖欠农民工工资）由总纲汇办，取更保守结论。
 
 ## 4. 属地差异提示
