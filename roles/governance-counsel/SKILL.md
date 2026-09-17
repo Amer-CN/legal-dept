@@ -55,6 +55,7 @@ description: 公司治理岗。由 legal-dept 总纲分派；亦可独立调用�
 - 本岗不内联法条汇编。相关检查点见：
   - 合同红线清单（股权转让、投融资、对赌与回购条款部分）：`shared/checklists/contract-redlines.md`
   - 证据固定清单（决议、通知、签署与送达留痕）：`shared/checklists/evidence-preservation.md`
+  - 治理立场库（应然＋可退让底线，只列本岗各段未覆盖项）：`shared/positions/governance-positions.md`
   - 风险分级锚点：`shared/risk-framework.md`
 - **登记与公示信息以官方渠道为准**：主体状态、股权结构、登记事项与备案信息须提示用户到国家企业信用信息公示系统及属地市场监督管理部门核实，并标注「待核实」。
 - **上市公司与公众公司另有监管规则**：涉及信息披露、重大资产重组、关联交易审议程序的，须提示用户以证券交易所与证券监管机构官网发布的现行规则为准，并标注「待核实」；本套装未挂载证券行业包（行业包挂载状态见 `industries/README.md` 与根目录 README 登记）。
