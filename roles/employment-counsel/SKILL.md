@@ -49,6 +49,7 @@ description: 劳动用工岗。由 legal-dept 总纲分派；亦可独立调用�
 - 劳动合同订立、履行、变更、解除与终止的规则，工时与休假、社保与工伤、集体协商的一般规则：引用时写明法律名称 + 条文编号 + 关键原文，无法确认现行有效性时标「待核实」。
 - 本岗不内联法条汇编。相关检查点见：
   - 劳动红线清单：`shared/checklists/employment-redlines.md`
+  - 劳动立场库（应然＋可退让底线，只列红线清单未覆盖项）：`shared/positions/labor-positions.md`
   - 证据固定清单（劳动用工证据部分）：`shared/checklists/evidence-preservation.md`
   - 风险分级锚点：`shared/risk-framework.md`
 - **属地口径优先**：劳动事项大量依赖地方规定与执行口径，涉及具体标准（经济补偿基数、加班费基数、社保基数、工伤待遇）时，必须提示用户向属地人力资源和社会保障局及社保经办机构核实，并标注「待核实」。
