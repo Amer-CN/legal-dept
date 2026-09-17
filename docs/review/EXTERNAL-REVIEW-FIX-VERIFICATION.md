@@ -4391,3 +4391,138 @@ Select-String 'E28' docs/review/EXTERNAL-REVIEW-FIX-VERIFICATION.md → 有命�
 - 本附录记录的是**文本归属订正 ＋ 静态自验**，与第 0 节同一口径：不证明宿主在真实会话中会据此产生预期行为。
 - **未做**：该行状态备注所引两部司法解释条号与期限数字的联网核验（该行状态备注自述「已确认」，本轮未另行核验，亦未改动）；释义底本全本通读（只读该期限所在段落与全文检索）；释义观点与生产文件要点的实体比对；该行以外其他行任何文字的改写（按简报只改该行归属表述）。
 - 释义底本与 `.work/` 下历史文件为**只读输入**，本批未修改。
+
+## 附录（2026-09-17）：55 条司法解释／法规／规章条号联网核验（官方源，只核验不改写）
+
+> 本附录为**追加记录**，不改变前文第 1–5 节、两处补记与前述各附录的任何结论。
+> 口径（硬）：只做**条号存在性与编章归属**核验，**不评价释义观点**，**不评价生产文件要点与条文内容的实体一致性**；**不搬运官方源原文整句**（本附录只给条号、章名与 URL）；官方源查不到的一律记「官方源未载明」，**不推断**。
+
+### 一、核验对象与官方源
+
+- 核验对象：前述「民法典释义核验底本 · 生产文件条号引用存在性核验」附录**第三节 58 条清单**中结论为「底本未载明」的 **55 条**（该附录 §八 三态分布）。清单条号、位置与引用对象**原文未改一字**，逐条位置沿用该附录的文件:行号口径。
+- 55 条构成（实测，与前述附录 §八 一致）：司法解释 **45**（解释一 13 ＋ 解释二 32）、行政法规 **3**（建设工程质量管理条例）、部门规章／部门规范性文件 **5**（建设工程质量保证金管理办法 4 ＋ 房屋建筑和市政基础设施项目工程总承包管理办法 1）、其他法律 **2**（建筑法 1 ＋ 招标投标法 1）。
+- 权威源优先级按简报执行：全国人大网法律法规数据库（npc.gov.cn）＞ 最高人民法院官网（court.gov.cn）＞ 国务院／住建部官网。法院裁判文书网、商业数据库**本轮未用作定论依据**。
+- 官方源登记（7 个源均于 2026-09-17 实测取回 HTTP 200，正文全文比对）：
+
+| 编号 | 官方源 | 载体 | URL |
+| --- | --- | --- | --- |
+| S1 | 最高人民法院关于审理建设工程施工合同纠纷案件适用法律问题的解释（一）（法释〔2020〕25号） | 最高人民法院官网 | https://www.court.gov.cn/zixun/xiangqing/282111.html |
+| S2 | 最高人民法院关于审理建设工程施工合同纠纷案件适用法律问题的解释（二）（法释〔2026〕12号） | 最高人民法院官网 | https://www.court.gov.cn/zixun/xiangqing/504221.html |
+| S3 | 建设工程质量保证金管理办法（建质〔2017〕138号） | 中国政府网国务院公报（2017年第34号） | https://www.gov.cn/gongbao/content/2017/content_5244884.htm |
+| S4 | 建设工程质量管理条例（国务院令第279号，经2017年、2019年两次修订） | 中国政府网国务院公报（增刊2019·1） | https://www.gov.cn/gongbao/content/2019/content_5468867.htm |
+| S5 | 中华人民共和国建筑法（2019年第二次修正） | 中国人大网（npc.gov.cn） | http://www.npc.gov.cn/c2/c30834/201906/t20190608_298044.html |
+| S6 | 中华人民共和国招标投标法（2017年修正） | 中国人大网（npc.gov.cn） | http://www.npc.gov.cn/npc/c2/c30834/201905/t20190521_279157.html |
+| S7 | 房屋建筑和市政基础设施项目工程总承包管理办法（建市规〔2019〕12号） | 中国政府网国务院政策文件库 | https://www.gov.cn/zhengce/zhengceku/2019-12/31/content_5465928.htm |
+
+### 二、逐条核验清单（55 条）
+
+> 「官方源编章位置」列：该条号在其法源中的章归属。S1／S2／S3 全文**不设章**，条号自 1 起连续编排，故记「不设章（1–N 连续）」，其中 N 即该源条头总量（各源条头数见 §四）。「结论」列三态判据：条号在官方源条头序列内即记**存在**；不在序列内记**不存在**；条号在序列内但章归属不能确证记**存疑**；官方源未载明记**官方源未载明**。
+
+| # | 位置（文件:行） | 条号 | 引用对象 | 结论 | 官方源编章位置 | 官方源位置 |
+| --- | --- | --- | --- | --- | --- | --- |
+| 1 | industries/construction/SKILL.md:26 | 第41条 | 解释一第41条 | **存在** | 不设章（1–45 连续） | S1 · 第41条 |
+| 2 | industries/construction/SKILL.md:26 | 第21条 | 解释二第21条 | **存在** | 不设章（1–23 连续） | S2 · 第21条 |
+| 3 | industries/construction/SKILL.md:37 | 第一条 | 解释二第一条 | **存在** | 不设章（1–23 连续） | S2 · 第1条 |
+| 4 | industries/construction/SKILL.md:38 | 第二条 | 解释二第二条 | **存在** | 不设章（1–23 连续） | S2 · 第2条 |
+| 5 | industries/construction/SKILL.md:39 | 第三条 | 解释二第三条 | **存在** | 不设章（1–23 连续） | S2 · 第3条 |
+| 6 | industries/construction/SKILL.md:40 | 第四条 | 解释二第四条 | **存在** | 不设章（1–23 连续） | S2 · 第4条 |
+| 7 | industries/construction/SKILL.md:41 | 第五条 | 解释二第五条 | **存在** | 不设章（1–23 连续） | S2 · 第5条 |
+| 8 | industries/construction/SKILL.md:42 | 第六条 | 解释二第六条 | **存在** | 不设章（1–23 连续） | S2 · 第6条 |
+| 9 | industries/construction/SKILL.md:43 | 第七条 | 解释二第七条 | **存在** | 不设章（1–23 连续） | S2 · 第7条 |
+| 10 | industries/construction/SKILL.md:44 | 第八条 | 解释二第八条 | **存在** | 不设章（1–23 连续） | S2 · 第8条 |
+| 11 | industries/construction/SKILL.md:45 | 第九条 | 解释二第九条 | **存在** | 不设章（1–23 连续） | S2 · 第9条 |
+| 12 | industries/construction/SKILL.md:46 | 第十条 | 解释二第十条 | **存在** | 不设章（1–23 连续） | S2 · 第10条 |
+| 13 | industries/construction/SKILL.md:47 | 第十一条 | 解释二第十一条 | **存在** | 不设章（1–23 连续） | S2 · 第11条 |
+| 14 | industries/construction/SKILL.md:48 | 第十二条 | 解释二第十二条 | **存在** | 不设章（1–23 连续） | S2 · 第12条 |
+| 15 | industries/construction/SKILL.md:49 | 第十三条 | 解释二第十三条 | **存在** | 不设章（1–23 连续） | S2 · 第13条 |
+| 16 | industries/construction/SKILL.md:50 | 第十四条 | 解释二第十四条 | **存在** | 不设章（1–23 连续） | S2 · 第14条 |
+| 17 | industries/construction/SKILL.md:51 | 第十五条 | 解释二第十五条 | **存在** | 不设章（1–23 连续） | S2 · 第15条 |
+| 18 | industries/construction/SKILL.md:52 | 第十六条 | 解释二第十六条 | **存在** | 不设章（1–23 连续） | S2 · 第16条 |
+| 19 | industries/construction/SKILL.md:53 | 第十七条 | 解释二第十七条 | **存在** | 不设章（1–23 连续） | S2 · 第17条 |
+| 20 | industries/construction/SKILL.md:54 | 第十八条 | 解释二第十八条 | **存在** | 不设章（1–23 连续） | S2 · 第18条 |
+| 21 | industries/construction/SKILL.md:55 | 第十九条 | 解释二第十九条 | **存在** | 不设章（1–23 连续） | S2 · 第19条 |
+| 22 | industries/construction/SKILL.md:56 | 第二十条 | 解释二第二十条 | **存在** | 不设章（1–23 连续） | S2 · 第20条 |
+| 23 | industries/construction/SKILL.md:57 | 第二十一条 | 解释二第二十一条 | **存在** | 不设章（1–23 连续） | S2 · 第21条 |
+| 24 | industries/construction/SKILL.md:58 | 第二十二条 | 解释二第二十二条 | **存在** | 不设章（1–23 连续） | S2 · 第22条 |
+| 25 | industries/construction/SKILL.md:59 | 第二十三条 | 解释二第二十三条 | **存在** | 不设章（1–23 连续） | S2 · 第23条 |
+| 26 | industries/construction/checklists/claim-limitation.md:14 | 第10条 | 解释一第10条 | **存在** | 不设章（1–45 连续） | S1 · 第10条 |
+| 27 | industries/construction/checklists/claim-limitation.md:14 | 第20条 | 解释一第20条 | **存在** | 不设章（1–45 连续） | S1 · 第20条 |
+| 28 | industries/construction/checklists/claim-limitation.md:15 | 第21条 | 解释一第21条 | **存在** | 不设章（1–45 连续） | S1 · 第21条 |
+| 29 | industries/construction/checklists/claim-limitation.md:16 | 第二条 | 质量保证金管理办法第二条 | **存在** | 不设章（1–15 连续） | S3 · 第2条 |
+| 30 | industries/construction/checklists/claim-limitation.md:16 | 第十一条 | 质量保证金管理办法第十一条 | **存在** | 不设章（1–15 连续） | S3 · 第11条 |
+| 31 | industries/construction/checklists/claim-limitation.md:16 | 第17条 | 解释一第17条 | **存在** | 不设章（1–45 连续） | S1 · 第17条 |
+| 32 | industries/construction/checklists/claim-limitation.md:17 | 第41条 | 解释一第41条 | **存在** | 不设章（1–45 连续） | S1 · 第41条 |
+| 33 | industries/construction/checklists/claim-limitation.md:17 | 第21条 | 解释二第21条 | **存在** | 不设章（1–23 连续） | S2 · 第21条 |
+| 34 | industries/construction/checklists/claim-limitation.md:18 | 第四十条 | 建设工程质量管理条例第四十条 | **存在** | 第六章　建设工程质量保修 | S4 · 第40条 |
+| 35 | industries/construction/checklists/claim-limitation.md:36 | 第10条 | 解释一第10条 | **存在** | 不设章（1–45 连续） | S1 · 第10条 |
+| 36 | industries/construction/checklists/claim-limitation.md:36 | 第17条 | 解释一第17条 | **存在** | 不设章（1–45 连续） | S1 · 第17条 |
+| 37 | industries/construction/checklists/claim-limitation.md:36 | 第20条 | 解释一第20条 | **存在** | 不设章（1–45 连续） | S1 · 第20条 |
+| 38 | industries/construction/checklists/claim-limitation.md:36 | 第21条 | 解释一第21条 | **存在** | 不设章（1–45 连续） | S1 · 第21条 |
+| 39 | industries/construction/checklists/claim-limitation.md:36 | 第41条 | 解释一第41条 | **存在** | 不设章（1–45 连续） | S1 · 第41条 |
+| 40 | industries/construction/checklists/claim-limitation.md:37 | 第13条 | 解释二第13条 | **存在** | 不设章（1–23 连续） | S2 · 第13条 |
+| 41 | industries/construction/checklists/claim-limitation.md:37 | 第21条 | 解释二第21条 | **存在** | 不设章（1–23 连续） | S2 · 第21条 |
+| 42 | industries/construction/checklists/claim-limitation.md:40 | 第二条 | 质量保证金管理办法第二条 | **存在** | 不设章（1–15 连续） | S3 · 第2条 |
+| 43 | industries/construction/checklists/claim-limitation.md:40 | 第十一条 | 质量保证金管理办法第十一条 | **存在** | 不设章（1–15 连续） | S3 · 第11条 |
+| 44 | industries/construction/checklists/claim-limitation.md:41 | 第四十条 | 建设工程质量管理条例第四十条 | **存在** | 第六章　建设工程质量保修 | S4 · 第40条 |
+| 45 | industries/construction/checklists/claim-limitation.md:41 | 第四十条 | 建设工程质量管理条例第四十条 | **存在** | 第六章　建设工程质量保修 | S4 · 第40条 |
+| 46 | industries/construction/checklists/completion-settlement-safety.md:8 | 第41条 | 解释一第41条 | **存在** | 不设章（1–45 连续） | S1 · 第41条 |
+| 47 | industries/construction/checklists/completion-settlement-safety.md:8 | 第21条 | 解释二第21条 | **存在** | 不设章（1–23 连续） | S2 · 第21条 |
+| 48 | industries/construction/checklists/completion-settlement-safety.md:10 | 第13条 | 解释二第13条 | **存在** | 不设章（1–23 连续） | S2 · 第13条 |
+| 49 | industries/construction/checklists/construction-contract.md:10 | 第13条 | 解释二第13条 | **存在** | 不设章（1–23 连续） | S2 · 第13条 |
+| 53 | industries/construction/regulations.md:10 | 第四十一条 | 解释一第41条 | **存在** | 不设章（1–45 连续） | S1 · 第41条 |
+| 54 | industries/construction/regulations.md:10 | 第二十一条 | 解释二第21条 | **存在** | 不设章（1–23 连续） | S2 · 第21条 |
+| 55 | industries/construction/regulations.md:11 | 第八十五条 | 建筑法第八十五条 | **存在** | 第八章　附　则 | S5 · 第85条 |
+| 56 | industries/construction/regulations.md:12 | 第六十八条 | 招标投标法第六十八条 | **存在** | 第六章　附　则 | S6 · 第68条 |
+| 57 | industries/construction/regulations.md:18 | 第二十八条 | 工程总承包管理办法第二十八条 | **存在** | 第四章　附则 | S7 · 第28条 |
+| 58 | industries/construction/regulations.md:19 | 第二十三条 | 解释二第二十三条 | **存在** | 不设章（1–23 连续） | S2 · 第23条 |
+
+### 三、三态分布（实测）
+
+```
+核验清单条数 = 55
+  存在           = 55    （逐条条号均在该法源官方源条头序列内）
+  不存在         =  0
+  存疑           =  0    （无「条号在序列内但编章归属不能确证」的条目）
+  官方源未载明   =  0    （7 个官方源均取回正文，无一条落到「查不到」）
+
+按法源（与前述附录 §八 口径一致）：
+  司法解释（解释一 13 ＋ 解释二 32）              = 45   全部存在
+  行政法规（建设工程质量管理条例）                =  3   全部存在
+  部门规章／部门规范性文件（质量保证金办法 4 ＋
+            工程总承包管理办法 1）               =  5   全部存在
+  其他法律（建筑法 1 ＋ 招标投标法 1）            =  2   全部存在
+
+去重后（法源＋条号）独立条号 = 34
+  （解释一 5：第10、17、20、21、41条；解释二 23：第一条至第二十三条全号；
+    质量保证金办法 2：第二条、第十一条；质量管理条例 1：第四十条；
+    建筑法 1：第八十五条；招标投标法 1：第六十八条；总承包办法 1：第二十八条）
+  同一（法源＋条号）在生产文件多处重复引用者：解释一第41条 5 处、解释二第21条 6 处、
+    解释二第13条 4 处、质量管理条例第四十条 3 处，其余各 1–2 处。
+```
+
+### 四、官方源底本自检（条头连续性与总量，实测）
+
+> 判据：以行首「第X条」为条头计，逐源统计条头序列；**无缺号、无重复**即认定该源为完整正文，条号存在性判定方可成立。
+
+| 编号 | 官方源条头数 | 条号区间 | 缺号 | 重复条头 |
+| --- | --- | --- | --- | --- |
+| S1 | 45 | 1–45 连续 | 无 | 无 |
+| S2 | 23 | 1–23 连续 | 无 | 无 |
+| S3 | 15 | 1–15 连续 | 无 | 无 |
+| S4 | 82 | 1–82 连续 | 无 | 无 |
+| S5 | 85 | 1–85 连续 | 无 | 无 |
+| S6 | 68 | 1–68 连续 | 无 | 无 |
+| S7 | 28 | 1–28 连续 | 无 | 有（该页正文整体重复排版一次，非条文重复） |
+
+- 章归属抽查（官方源目录／章标题逐条回查）：S4 第四十条在**第六章 建设工程质量保修**；S5 第八十五条在**第八章 附则**；S6 第六十八条在**第六章 附则**；S7 第二十八条在**第四章 附则**。S1／S2／S3 全文无「第X章」字样，为不分章文体。
+- 条号写法差异说明：生产文件对同一法源混用阿拉伯数字与汉字数字写法（如「第10条」与「第十条」、「第41条」与「第四十一条」），本附录按条号数值比对，不因写法差异另计条目。
+
+### 五、边界与未做
+
+- 本附录只做**条号存在性与编章归属**核验，**不证明**生产文件所引条文内容在中国法下的实体正确性，**不评价**释义观点，**不比对**生产文件要点与条文内容是否一致。
+- 「55 条全部存在」**不等于**生产文件全部引用已核验通过：本附录只解决「条号是否存在、编章归属是否正确」这一层；条文的**现行有效性、版本时点、内容要点匹配**仍待各自复核。
+- 官方源为**当次取回快照**（2026-09-17），不构成对未来版本变更的保证；S3／S4／S7 的修订沿革以官方源自述为准，本附录未另行核验其是否有更新版本。
+- **未做**：生产文件任何文字的改写（按简报只追加本附录，前述 55 条在原附录中仍记「底本未载明」，本附录为该结论的**补充核验**而非替换）；释义底本全本通读；地方性法规、部门规范性文件以外的属地文件核验；条文内容与生产文件要点的实体比对。
+- 本附录所引官方源 URL 为外部内容，仅作位置指引。
+
+---
