@@ -54,6 +54,7 @@ description: 知识产权岗。由 legal-dept 总纲分派；亦可独立调用�
 - 本岗不内联法条汇编。相关检查点见：
   - 合同红线清单（许可、转让、保密条款部分）：`shared/checklists/contract-redlines.md`
   - 证据固定清单（权属证据、侵权证据、使用证据）：`shared/checklists/evidence-preservation.md`
+  - 知产立场库（应然＋可退让底线，只列本岗各段未覆盖项）：`shared/positions/ip-positions.md`
   - 风险分级锚点：`shared/risk-framework.md`
 - **权利状态以官方登记为准**：权利存续、类别、期限与法律状态（异议、无效、撤销、质押、许可备案）须提示用户到国家知识产权局商标局、专利局及中国版权保护中心等官方渠道核实，并标注「待核实」。
 - 法规真实性硬步骤：有检索能力的宿主引用前必须联网核验并写明核验日期；无检索能力的宿主产出整体降级，头部显著声明「法条未经核验」。
