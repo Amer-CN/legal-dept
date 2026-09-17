@@ -49,6 +49,7 @@ description: 合同法务岗。由 legal-dept 总纲分派；亦可独立调用�
 - 合同效力、成立、履行、违约与解除的一般规则：引用时写明法律名称 + 条文编号 + 关键原文，无法确认现行有效性时标「待核实」。
 - 本岗不内联法条汇编。相关检查点见：
   - 合同红线清单：`shared/checklists/contract-redlines.md`
+  - 合同立场库（应然＋可退让底线，只列红线清单未覆盖项）：`shared/positions/contract-positions.md`
   - 证据固定清单（违约证据、履行证据）：`shared/checklists/evidence-preservation.md`
   - 风险分级锚点：`shared/risk-framework.md`
 - 涉及特定行业的强制性规定或资质要求，参见 `industries/` 下的行业包（若已挂载）；未挂载时按「待核实」处理并提示用户向对应行业主管部门核实。
